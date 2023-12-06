@@ -1,0 +1,3 @@
+Mon Dec  4 15:11:49 2023
+WARNING: mju_openResource: unknown file '/home/robot/mujoco_learning/servo/hello.xml'
+
