@@ -1,3 +1,6 @@
 Mon Dec  4 15:11:49 2023
 WARNING: mju_openResource: unknown file '/home/robot/mujoco_learning/servo/hello.xml'
 
+Thu Dec  7 18:26:35 2023
+WARNING: Nan, Inf or huge value in QACC at DOF 0. The simulation is unstable. Time = 3.2880.
+

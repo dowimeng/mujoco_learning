@@ -14,9 +14,9 @@
 
     <actuator>
     <!-- 这三种伺服模式某种程度上是互斥的 一般来说只能有一种在工作-->
-        <motor name="torque" joint="joint0" gear="1" ctrllimited="true" ctrlrange="-100 100"/>
-        <position name="position_servo" joint="joint0" kp="10"/>
-        <velocity name="velocity_serve" joint="joint0" kv="100"/>
+<!--        <motor name="torque" joint="joint0" gear="1" ctrllimited="true" ctrlrange="-100 100"/>-->
+        <general name="position_servo" joint="joint0" gainprm="100" biasprm="0 -100 -10"/>
+<!--        <velocity name="velocity_serve" joint="joint0" kv="10"/>-->
     </actuator>
 
 </mujoco>

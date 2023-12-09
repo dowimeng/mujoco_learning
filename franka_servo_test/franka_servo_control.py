@@ -161,11 +161,11 @@ x_ref = center[0] + r * np.cos(phi)
 y_ref = center[1] + r * np.sin(phi)
 
 
-target_quat = data.site_xmat
-target_quat = target_quat[0].reshape(3,3)
-target_quat = Quaternion(matrix=target_quat)
-target_quat = [target_quat.x,target_quat.y,target_quat.z,target_quat.w]
-print(target_quat)
+# target_quat = data.site_xmat
+# target_quat = target_quat[0].reshape(3,3)
+# target_quat = Quaternion(matrix=target_quat)
+# target_quat = [target_quat.x,target_quat.y,target_quat.z,target_quat.w]
+# print(target_quat)
 # print(len(x_ref))
 
 i = 0
@@ -188,7 +188,7 @@ while not glfw.window_should_close(window):
         # 得到 dq
         # IKResult = ik.qpos_from_site_pose(model, data_copy, "attachment_site", target_pos=target_pos,target_quat=target_quat)
         IKResult = ik.qpos_from_site_pose(model, data_copy, "attachment_site", target_pos=target_pos)
-        print(data.qfrc_passive)
+        # print(data.qfrc_passive)
 
         # 更新参考轨迹序列
         # data.qpos = IKResult.qpos

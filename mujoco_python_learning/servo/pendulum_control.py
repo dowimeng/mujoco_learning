@@ -27,8 +27,8 @@ def controller(model, data):
     # pass
 
     # spring-like position servo
-    set_position_servo(1, 10)
-    data.ctrl[1] = np.pi
+    # set_position_servo(0, 1)
+    data.ctrl[0] = np.pi
 
     # speed control; velocity control
     # set_velocity_servo(2,100)
@@ -54,7 +54,7 @@ def set_torque_servo(actuator_no, flag):
 
 def set_position_servo(actuator_no, kp):
     model.actuator_gainprm[actuator_no, 0] = kp
-    model.actuator_biasprm[actuator_no, 2] = -kp
+    model.actuator_biasprm[actuator_no, 1] = -kp
 
 
 def set_velocity_servo(actuator_no, kv):
