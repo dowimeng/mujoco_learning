@@ -102,6 +102,7 @@ def qpos_from_site_pose(model, data,
     if target_pos is not None and target_quat is not None:
         jac = np.empty((6, model.nv), dtype=dtype)
         err = np.empty(6, dtype=dtype)
+        # 取前三行和后三行
         jac_pos, jac_rot = jac[:3], jac[3:]
         err_pos, err_rot = err[:3], err[3:]
     else:
@@ -116,6 +117,7 @@ def qpos_from_site_pose(model, data,
         else:
             raise ValueError(_REQUIRE_TARGET_POS_OR_QUAT)
 
+    # model.nv是模型的自由度
     update_nv = np.zeros(model.nv, dtype=dtype)
 
     if target_quat is not None:
@@ -155,7 +157,7 @@ def qpos_from_site_pose(model, data,
     steps = 0
     success = False
 
-    # 迭代搜索关节角度
+    # 迭代搜索关节角度 主循环
     for steps in range(max_steps):
 
         err_norm = 0.0
@@ -173,6 +175,7 @@ def qpos_from_site_pose(model, data,
             mujoco.mju_quat2Vel(err_rot, err_rot_quat, 1)
             err_norm += np.linalg.norm(err_rot) * rot_weight
 
+        # 成功就结束主循环
         if err_norm < tol:
             logging.debug('Converged after %i steps: err_norm=%3g', steps, err_norm)
             success = True
@@ -183,11 +186,14 @@ def qpos_from_site_pose(model, data,
                 model, data, jac_pos, jac_rot, site_id)
             jac_joints = jac[:, dof_indices]
 
+            # 如果误差大于某个阈值 则多考虑阻尼项 小于该阈值就不考虑阻尼项了
             reg_strength = (
                 regularization_strength if err_norm > regularization_threshold
                 else 0.0)
 
             # 3. 求解关节更新量delta q
+            # 我觉得这里不对 这里传入的应该是err_pos和err_rot？
+            # 想明白了 没问题 是因为python的变量的赋值是指针 改变pos和rot的值的时候 err也改动了
             update_joints = nullspace_method(
                 jac_joints, err, regularization_strength=reg_strength)
 
@@ -201,6 +207,7 @@ def qpos_from_site_pose(model, data,
                               steps, progress_criterion, progress_thresh)
                 break
 
+            # 限制最大进步速度
             if update_norm > max_update_norm:
                 update_joints *= max_update_norm / update_norm
 
@@ -219,6 +226,7 @@ def qpos_from_site_pose(model, data,
             logging.debug('Step %2i: err_norm=%-10.3g update_norm=%-10.3g',
                           steps, err_norm, update_norm)
 
+    # 如果已经达到最大迭代次数还没有成功
     if not success and steps == max_steps - 1:
         logging.warning('Failed to converge after %i steps: err_norm=%3g',
                         steps, err_norm)
@@ -253,6 +261,7 @@ def nullspace_method(jac_joints, delta, regularization_strength=0.0):
     if regularization_strength > 0:
         # L2 regularization
         hess_approx += np.eye(hess_approx.shape[0]) * regularization_strength
+        # 下面调用的是np的矩阵求解器
         return np.linalg.solve(hess_approx, joint_delta)
     else:
         return np.linalg.lstsq(hess_approx, joint_delta, rcond=-1)[0]

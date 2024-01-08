@@ -4,316 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/mujoco_learning.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/finger_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/finger_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/hand.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/hand_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/hand_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/hand_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/hand_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/hand_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link0_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link1.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link3.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link3_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link3_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link3_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link3_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link4.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link4_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link4_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link4_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link4_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link5_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link5_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link5_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link5_collision_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link5_collision_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link5_collision_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_12.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_13.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_14.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_15.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_16.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link6_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/assets/link7_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/hand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/panda.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/panda.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/panda_nohand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_emika_panda/scene.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/franka_servo_control.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control/inverse_kinematics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/finger_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/finger_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/hand.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/hand_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/hand_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/hand_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/hand_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/hand_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link0_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link1.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link3.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link3_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link3_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link3_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link3_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link4.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link4_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link4_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link4_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link4_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link5_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link5_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link5_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link5_collision_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link5_collision_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link5_collision_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_12.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_13.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_14.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_15.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_16.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link6_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/assets/link7_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/hand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/panda.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/panda.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/panda_nohand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_emika_panda/scene.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/franka_impedance_servo_control.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/franka_impedance_control_2/inverse_kinematics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym-examples" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/custom_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/finger_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/finger_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/hand.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/hand_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/hand_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/hand_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/hand_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/hand_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link0_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link1.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link3.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link3_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link3_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link3_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link3_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link4.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link4_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link4_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link4_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link4_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link5_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link5_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link5_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link5_collision_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link5_collision_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link5_collision_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_12.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_13.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_14.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_15.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_16.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link6_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/assets/link7_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/hand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/panda.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/panda.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/panda_nohand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/scene.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/impedance_franka_gym.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/inverse_kinematics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gym_envs_franka/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/.idea/mujoco_panda.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/examples/demo_graduate_project_chapter1.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/examples/demo_panda_robot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/examples/demo_task_space_control.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/examples/demo_test_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/controllers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/controllers/controller_base.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/controllers/torque_based_controllers/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/controllers/torque_based_controllers/configs.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/controllers/torque_based_controllers/os_hybrid_force_motion_controller.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/gravity_robot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/franka_panda.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/franka_panda_no_gripper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/franka_panda_pos.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/franka_panda_pos_no_gripper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/finger.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/hand.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/link0.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/link1.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/link2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/link3.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/link4.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/link5.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/link6.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/collision/link7.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/finger.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/hand.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/link0.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/link1.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/link2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/link3.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/link4.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/link5.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/link6.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/meshes/visual/link7.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/other/simple_scene.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/actuators/pos.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/actuators/pos_with_gripper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/actuators/torque.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/actuators/torque_with_gripper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/arm.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/arm_with_block.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/arm_with_gripper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/assets.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/gripper.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda/sensors/ft_sensor.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/models/panda_block_table.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/mujoco_robot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/panda_robot.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/utils/__init__.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/utils/debug_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/utils/keyboard_poll.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/utils/tf.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/mujoco_panda/utils/viewer_utils.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mujoco_panda/set_env.sh" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part1.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part1.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part2.py" beforeDir="false" afterPath="$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/force_control_dynamic.png" beforeDir="false" afterPath="$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/force_control_dynamic.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/franka_impedance_control/任务.md" beforeDir="false" afterPath="$PROJECT_DIR$/franka_impedance_control/任务.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/franka_servo_test/franka_servo_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/franka_servo_test/franka_servo_control.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gym-examples/gym_examples/envs/grid_world.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym-examples/gym_examples/envs/grid_world.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mujoco_python_learning/servo/MUJOCO_LOG.TXT" beforeDir="false" afterPath="$PROJECT_DIR$/mujoco_python_learning/servo/MUJOCO_LOG.TXT" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mujoco_python_learning/servo/pendulum_control.py" beforeDir="false" afterPath="$PROJECT_DIR$/mujoco_python_learning/servo/pendulum_control.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mujoco_python_learning/servo/simple_pendulum.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mujoco_python_learning/servo/simple_pendulum.xml" afterDir="false" />
+    <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="new change">
+      <change afterPath="$PROJECT_DIR$/gym_envs_franka/impedance_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gym_envs_franka/position_test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/gym_envs_franka/torque_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/franka_impedance_control/inverse_kinematics.py" beforeDir="false" afterPath="$PROJECT_DIR$/franka_impedance_control/inverse_kinematics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/panda_nohand.xml" beforeDir="false" afterPath="$PROJECT_DIR$/gym_envs_franka/franka_emika_panda/panda_nohand.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym_envs_franka/impedance_franka_gym.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_envs_franka/impedance_franka_gym.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/gym_envs_franka/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/gym_envs_franka/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -336,9 +36,14 @@
     <setting file="file://$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part1.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part2.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/franka_impedance_control/franka_servo_control.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/franka_impedance_control/inverse_kinematics.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/franka_impedance_control_2/franka_impedance_servo_control.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/franka_servo_test/franka_servo_control.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/gym_envs_franka/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/gym_envs_franka/impedance_test.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/gym_envs_franka/position_test.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/gym_envs_franka/test.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/gym_envs_franka/torque_test.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/mujoco_python_learning/servo/pendulum_control.py" root0="SKIP_INSPECTION" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -358,21 +63,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/robot/mujoco_panda",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/robot/mujoco_learning/gym_envs_franka&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/gym_envs_franka" />
@@ -394,6 +99,19 @@
       <option name="presentableId" value="Default" />
       <updated>1701606493106</updated>
     </task>
+    <task id="LOCAL-00001" summary="new change">
+      <option name="closed" value="true" />
+      <created>1702091143429</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1702091143429</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="new change" />
+    <option name="LAST_COMMIT_MESSAGE" value="new change" />
   </component>
 </project>
