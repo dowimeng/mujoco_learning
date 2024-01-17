@@ -20,7 +20,10 @@ if __name__ == "__main__":
     # stable_baselines3.common.env_checker.check_env(custom_env)
 
     # print(custom_env.observation_space.sample())
-
+    # custom_env.reset()
+    #
+    # while 1 :
+    #     custom_env.step(action=np.array([1,1,1,1,1,1,1]))
 
     model = A2C("MlpPolicy", custom_env, verbose=1)
     model.learn(total_timesteps=10000)
