@@ -22,6 +22,7 @@ class ImpedanceFrankaGym(gym.Env):
         xml_path = abspath
         self.model = mj.MjModel.from_xml_path(xml_path)
         self.data = mj.MjData(self.model)
+        self.data_copy = copy.copy(self.data)
 
         # 其他配置
         self.cam = mj.MjvCamera()
@@ -71,6 +72,8 @@ class ImpedanceFrankaGym(gym.Env):
         self.i = None  # 这是运行到第几个轨迹点
         self.rot_weight = 1.0 # 确定旋转误差相对于平移误差的权重
         self.err_norm = None# 位置姿态总误差
+        self.IKResult = None # 运动学逆解
+        self.traj_qpos = None # 控制器上一轮的解算位置
 
         # 不懂第一句是什么
         self.render_mode = render_mode
@@ -100,13 +103,44 @@ class ImpedanceFrankaGym(gym.Env):
             "distance" : self.err_norm
         }
 
-    def pos_controller(self, target_pos, target_quat, action = np.array([1., 1., 1., 1., 1., 1., 1.])):
-        IKResult = ik.qpos_from_site_pose(self.model, self.data, site_name="attachment_site",
+    def pos_controller(self, target_pos, target_quat, regularization_strength = np.array([1., 1., 1., 1., 1., 1., 1.])):
+        IKResult = ik.qpos_from_site_pose(self.model, self.data_copy, site_name="attachment_site",
                                           target_pos=target_pos, target_quat=target_quat,
-                                          regularization_strength=action,
+                                          regularization_strength=regularization_strength,
                                           regularization_threshold=0.0001,
-                                          max_steps=1)
+                                          max_steps=100)
         self.data.ctrl = IKResult.qpos
+
+    def impedance_controller(self,target_pos, target_quat,
+                             regularization_strength = np.array([1., 1., 1., 1., 1., 1., 1.]),
+                             damp = np.array([1., 1., 1., 1., 1., 1., 1.]),
+                             spring = np.array([1., 1., 1., 1., 1., 1., 1.]) * 10):
+
+        if self.IKResult == None:
+            self.traj_qpos = np.zeros(shape=(7,))
+        else:
+            self.traj_qpos = self.IKResult.qpos
+        # 计算运动学解
+        self.IKResult = ik.qpos_from_site_pose(self.model, self.data_copy, site_name="attachment_site",
+                                          target_pos=target_pos, target_quat=target_quat,
+                                          regularization_strength=regularization_strength,
+                                          regularization_threshold=0.0001,
+                                          max_steps=100)
+
+        # 计算单关节力矩控制值 简化版 设置M_d = M
+        # 计算M矩阵
+        # M = np.zeros(shape=(self.model.nv, self.model.nv), dtype=np.float64)
+        # mj.mj_fullM(self.model, M, self.data.qM)
+        # 科氏力和重力的和 data.qfrc_bias
+        # 计算轨迹速度
+        q_d_vel = self.IKResult.qpos - self.traj_qpos
+        # 阻抗控制律
+        tau = self.data.qfrc_bias + \
+              damp * (q_d_vel - self.data.qvel) + \
+            spring * (self.IKResult.qpos - self.data.qpos)
+
+        self.data.ctrl = tau
+
 
     # 重置函数
     def reset(self, seed=None, options=None):
@@ -114,12 +148,9 @@ class ImpedanceFrankaGym(gym.Env):
         # 重置模型位置  这个key我暂时不确定是啥意思
         mj.mj_resetDataKeyframe(self.model,self.data,0)
         mj.mj_forward(self.model, self.data)
+        self.data_copy = copy.copy(self.data)
 
-        # We need the following line to seed self.np_random
-        # 暂时用不到随机数
-        # super().reset(seed=seed)
-
-        self.N = 100
+        self.N = 300
         self.i = 0
         self.err_norm = np.inf
 
@@ -148,21 +179,20 @@ class ImpedanceFrankaGym(gym.Env):
     # 一步就是一个轨迹循环
     def step(self, action):
 
-        if self.render_mode == "human":
-            self._render_frame()
+        # 控制仿真帧率
+        # 注意模拟帧率和控制器帧率不同
+        step_time = self.data.time
 
-        # 循环体主要轨迹跟踪部分
-        now_r = time.time()
-        # traj_tracking_record = self.data.site_xpos[0][:3]
+        # 执行一步控制器 pos_controller
+        self.data_copy.qpos = self.data.qpos
+        self.data_copy.site_xpos = self.data.site_xpos
+        self.data_copy.site_xmat = self.data.site_xmat
 
-        # 设置控制器并更新
-        mj.set_mjcb_control(self.pos_controller(self.target_pos[self.i], self.target_quat, action))
-        # mj.mj_step(self.model, self.data)
-
-        # 给定仿真频率
-        while 1:
-            if time.time() - now_r >= 0.001:
-                break
+        self.impedance_controller(target_pos=self.target_pos[self.i],
+                            target_quat=self.target_quat,
+                            regularization_strength=action)
+        #  执行仿真 mj_step
+        while (self.data.time - step_time < 1.0/60.0) :
             mj.mj_step(self.model, self.data)
 
         # 记录误差值 并计算reward
@@ -187,6 +217,10 @@ class ImpedanceFrankaGym(gym.Env):
         # 如果轨迹结束 重新给定轨迹
         if self.i == self.N:
             self.i = 0
+
+        # 执行一步render
+        if self.render_mode == "human":
+            self._render_frame()
 
         observation = self._get_obs()
         info = self._get_info()
