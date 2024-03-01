@@ -10,6 +10,7 @@ import inverse_kinematics as ik
 import copy
 import matplotlib.pyplot as plt
 import pandas as pd
+import csv
 
 class ImpedanceFrankaGym(gym.Env):
 
@@ -79,6 +80,7 @@ class ImpedanceFrankaGym(gym.Env):
         self.traj_qpos = None # 控制器上一轮的解算位置
 
         self.site_tracking_record = None # 记录每一次轨迹后末端跟踪情况
+        self.qpos_tracking_record = None # 记录每一个关节角度的变化
 
         # 不懂第一句是什么
         self.render_mode = render_mode
@@ -96,7 +98,7 @@ class ImpedanceFrankaGym(gym.Env):
                 self.data.site_xpos[0][:3],
                 site_quat,
                 # 要把target_pos 和 target_quat设置为全局变量
-                self.target_pos[:,self.i],
+                self.target_pos[:],
                 self.target_quat,
             ]
         )
@@ -161,26 +163,28 @@ class ImpedanceFrankaGym(gym.Env):
         self.i = 0
         self.err_norm = np.inf
         self.site_tracking_record = self.data.site_xpos[0][:3]
+        self.qpos_tracking_record = self.data.qpos
 
-        # 给轨迹,空间圆形 姿态固定
+        # 给定目标点和目标姿态
         center = np.array(self.data.site_xpos[0][:3])
-        r = 0.1
-        phi = np.linspace(0, 2 * np.pi, self.N)
-        x_traj = center[0] + r * np.cos(phi) * np.cos(-np.pi / 4)
-        y_traj = center[1] + r * np.sin(phi) * np.cos(-np.pi / 4)
-        z_traj = center[2] + r * np.cos(phi) * np.sin(-np.pi / 4)
-        target_traj = np.vstack((x_traj, y_traj, z_traj))
-
-        # 目标点位置和姿态
-        self.target_pos = target_traj
+        self.target_pos = [0, center[0], center[2] + 0.05]
+        # self.target_pos = center
         self.target_quat = np.empty(4, dtype=np.float64)
         mj.mju_mat2Quat(self.target_quat, self.data.site_xmat[0])
+        self.target_quat = [self.target_quat[0], self.target_quat[1], self.target_quat[2], self.target_quat[3]]
+
+        # 初始化一个csv文件用作记录
+        # record_data = np.append(self.data.site_xpos[0][:3], self.data.qpos)
+        # df_record_data = pd.DataFrame([record_data])
+        # df_record_data.to_csv('realtime_data.csv', mode='w', index= False, header=False)
 
         if self.render_mode == "human":
             self._render_frame()
 
         observation = self._get_obs()
         info = self._get_info()
+
+
 
         return observation, info
 
@@ -196,54 +200,50 @@ class ImpedanceFrankaGym(gym.Env):
         self.data_copy.site_xpos = self.data.site_xpos
         self.data_copy.site_xmat = self.data.site_xmat
 
-        self.pos_controller(target_pos=self.target_pos[:,self.i],
+        # 记录到csv文件中
+        record_data = np.append(self.data.site_xpos[0][:3], self.data.qpos)
+        # df_record_data = pd.DataFrame([record_data])
+        # df_record_data.to_csv('realtime_data.csv', mode='a', index= False, header=False)
+
+        self.pos_controller(target_pos=self.target_pos,
                             target_quat=self.target_quat,
                             regularization_strength = action)
         #  执行仿真 mj_step
+
         while (self.data.time - step_time < 1.0/60.0) :
             mj.mj_step(self.model, self.data)
 
         # 记录误差值 并计算reward
         self.err_record()
         reward = -self.err_norm
-        # print(reward)
-
-        # 记录跟踪情况
-        self.site_tracking_record = np.dstack((self.site_tracking_record, self.data.site_xpos[0][:3]))
-
-        self.i += 1
-        # 如果轨迹结束 重新给定轨迹
-        if self.i == self.N - 1:
-            self.site_tracking_record = self.site_tracking_record[0]
-            plt.ion()
-            plt.clf()
-            # 这里还是用存数据的方式吧 图自己画
-            ax_tracking = plt.axes(projection='3d')
-            ax_tracking.plot3D(self.target_pos[0,:], self.target_pos[1,:], self.target_pos[2,:], 'red')
-            ax_tracking.scatter3D(self.site_tracking_record[0,:], self.site_tracking_record[1,:], self.site_tracking_record[2,:],
-                                  cmap='b')
-            data = pd.DataFrame(np.vstack((self.target_pos, self.site_tracking_record)))
-            data.to_excel('./picture/test'+ str(action[0]) + '.xlsx')
-            plt.pause(0.1)
-            plt.savefig('./picture/test.png')
-            plt.ioff()
 
 
-            self.site_tracking_record = self.data.site_xpos[0][:3]
-            self.i = 0
+            # 这部分是实时绘制跟踪效果的代码 暂时不要动
+            # plt.ion()
+            # plt.clf()
+            # # 这里还是用存数据的方式吧 图自己画
+            # ax_tracking = plt.axes(projection='3d')
+            # ax_tracking.plot3D(self.target_pos[0,:], self.target_pos[1,:], self.target_pos[2,:], 'red')
+            # ax_tracking.scatter3D(self.site_tracking_record[0,:], self.site_tracking_record[1,:], self.site_tracking_record[2,:],
+            #                       cmap='b')
+            # data = pd.DataFrame(np.vstack((self.target_pos, self.site_tracking_record)))
+            # data.to_excel('./picture/test'+ str(action[0]) + '.xlsx')
+            # plt.pause(0.1)
+            # plt.savefig('./picture/test.png')
+            # plt.ioff()
 
         # 执行一步render
         if self.render_mode == "human":
             self._render_frame()
 
         observation = self._get_obs()
-        info = self._get_info()
-
+        # info = self._get_info()
+        info = record_data
         return observation, reward, False, False, info
 
     def err_record(self):
         # 计算位置误差
-        err_pos = self.target_pos[:,self.i] - self.data.site_xpos[0][:3]
+        err_pos = self.target_pos - self.data.site_xpos[0][:3]
         self.err_norm = np.linalg.norm(err_pos)
         # 计算姿态误差
         site_xquat = np.empty(4, dtype=np.float64)
@@ -255,8 +255,6 @@ class ImpedanceFrankaGym(gym.Env):
         mj.mju_mulQuat(err_rot_quat, self.target_quat, neg_site_xquat)
         mj.mju_quat2Vel(err_rot, err_rot_quat, 1)
         self.err_norm += np.linalg.norm(err_rot) * self.rot_weight
-
-
 
     def render(self):
         if self.render_mode == "rgb_array":

@@ -11,6 +11,8 @@ import impedance_franka_gym
 # import stable_baselines3
 from stable_baselines3 import A2C
 import stable_baselines3.common.env_checker
+import time
+import pandas as pd
 # 定义位置控制器
 if __name__ == "__main__":
 
@@ -21,7 +23,14 @@ if __name__ == "__main__":
 
     # print(custom_env.observation_space.sample())
     custom_env.reset()
-    # #
-    while 1 :
-        custom_env.step(action=np.array([0.1,1,1,1,1,1,1]))
+    # 初始化一个csv文件用作记录
+    df_record_data = pd.DataFrame()
+    df_record_data.to_csv('realtime_data.csv', mode='w', index= False, header=False)
+
+    # 仿真一步
+    loop_time = time.time()
+    while (time.time() - loop_time < 3.0) :
+        _,_,_,_,record_data = custom_env.step(action=np.array([1,1,1,1,1,1,1]))
+        df_record_data = pd.DataFrame([record_data])
+        df_record_data.to_csv('realtime_data.csv', mode='a', index= False, header=False)
 
