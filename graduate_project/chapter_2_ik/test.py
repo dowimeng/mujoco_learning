@@ -1,5 +1,6 @@
 import pandas as pd
-data = [1,2,3,4]
+import numpy as np
+data = [np.nan*4]
 data2 = [5,6,7,8]
 data3 = [9,10,11,12]
 df_data = pd.DataFrame([data])
