@@ -38,7 +38,7 @@ if __name__ == "__main__":
     # weight_realtime_data
     for i in np.linspace(start=-1.0, stop=1.0, num=20):
         custom_env.reset()
-        df_record_data = pd.DataFrame(np.zeros(shape=(1,10)))
+        df_record_data = pd.DataFrame(np.zeros(shape=(1,13)))
         df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)
         loop_time = time.time()
         while (time.time() - loop_time < 3.0):

@@ -11,6 +11,7 @@ import copy
 import matplotlib.pyplot as plt
 import pandas as pd
 import csv
+from scipy.spatial.transform import Rotation as R
 
 class ImpedanceFrankaGym(gym.Env):
 
@@ -167,11 +168,19 @@ class ImpedanceFrankaGym(gym.Env):
 
         # 给定目标点和目标姿态
         center = np.array(self.data.site_xpos[0][:3])
-        self.target_pos = [0, center[0], center[2] + 0.05]
+        self.target_pos = [0, center[0], center[2] - 0.3]
         # self.target_pos = center
         self.target_quat = np.empty(4, dtype=np.float64)
         mj.mju_mat2Quat(self.target_quat, self.data.site_xmat[0])
-        self.target_quat = [self.target_quat[0], self.target_quat[1], self.target_quat[2], self.target_quat[3]]
+
+        rotation = R.from_quat(self.target_quat)
+        # euler_angles = rotation.as_euler('xyz', degrees=False)
+        euler_angles = rotation.as_euler('xyz', degrees=False)
+
+        euler_angles[2] = np.pi / 2
+        rotation = R.from_euler('xyz', euler_angles)
+        self.target_quat = rotation.as_quat()
+
 
         # 初始化一个csv文件用作记录
         # record_data = np.append(self.data.site_xpos[0][:3], self.data.qpos)
@@ -202,6 +211,12 @@ class ImpedanceFrankaGym(gym.Env):
 
         # 记录到csv文件中
         record_data = np.append(self.data.site_xpos[0][:3], self.data.qpos)
+
+        record_quat = np.empty(4, dtype=np.float64)
+        mj.mju_mat2Quat(record_quat, self.data.site_xmat[0])
+        rotation = R.from_quat(record_quat)
+        euler_angles = rotation.as_euler('xyz', degrees=False)
+        record_data = np.append(record_data, euler_angles)
         # df_record_data = pd.DataFrame([record_data])
         # df_record_data.to_csv('realtime_data.csv', mode='a', index= False, header=False)
 
