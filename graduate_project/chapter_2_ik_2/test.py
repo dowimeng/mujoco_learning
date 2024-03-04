@@ -23,9 +23,5 @@ import numpy as np
 # print('all font list get from matplotlib.font_manager:')
 # for f in sorted(mpl_fonts):
 #     print('\t' + f)
-i = 0.1
-weight_other = ((7 - i ** 2) / 6) ** 0.5
-input_action = np.ones(7) * weight_other
-input_action[6] = i
-print(input_action)
-print(sum(input_action * input_action))
+for i in np.linspace(start=0.1, stop=5.0, num=49):
+    print(i)
