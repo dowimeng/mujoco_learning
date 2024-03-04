@@ -28,7 +28,7 @@ if __name__ == "__main__":
     df_record_data.to_csv('realtime_data.csv', mode='w', index= False, header=False)
 
     # 不改变对角矩阵模的大小，只改变单一关节的权重对关节总角度变化的影响
-    for i in np.linspace(start=0.1, stop=5.0, num=49):
+    for i in np.linspace(start=0.1, stop=5.0, num=19):
         custom_env.reset()
         df_record_data = pd.DataFrame(np.zeros(shape=(1,13)))
         df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)

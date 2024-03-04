@@ -37,6 +37,7 @@ plt.legend(['关节1', '关节2', '关节3', '关节4', '关节5', '关节6', '�
            loc = 'lower right', fontsize = textsize)
 plt.xlabel('关节%d的权重与其余关节权重的比值'%5, fontsize = textsize)
 plt.ylabel('关节角度变化绝对值/rad', fontsize = textsize)
+
 plt.savefig('picture/diff_weight_ratio.png')
 plt.show()
 
