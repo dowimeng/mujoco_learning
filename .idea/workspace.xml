@@ -5,9 +5,89 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="基本完成了第二章运动学部分的图表绘制">
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/LICENSE" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/finger_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/finger_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/hand.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/hand_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/hand_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/hand_2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/hand_3.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/hand_4.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_10.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_11.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_3.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_4.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_5.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_7.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_8.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link0_9.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link1.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link2.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link3.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link3_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link3_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link3_2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link3_3.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link4.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link4_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link4_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link4_2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link4_3.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link5_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link5_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link5_2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link5_collision_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link5_collision_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link5_collision_2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_10.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_11.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_12.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_13.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_14.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_15.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_16.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_3.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_4.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_5.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_6.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_7.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_8.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link6_9.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7.stl" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7_0.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7_1.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7_2.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7_3.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7_4.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7_5.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7_6.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/assets/link7_7.obj" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/hand.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/panda.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/panda.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/panda_nohand.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/franka_emika_panda/scene.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/impedance_franka_gym.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/inverse_kinematics.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/pic_plot.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/picture/diff_weight_ratio.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/test.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/traj_tracking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/pic_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/pic_plot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/traj_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/traj_tracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/impedance_franka_gym.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/impedance_franka_gym.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/realtime_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/realtime_data.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -41,9 +121,9 @@
     <setting file="file://$PROJECT_DIR$/graduate_project/6_impedance_code_withRL/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/graduate_project/6_impedance_code_withRL/inverse_kinematics.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/graduate_project/6_impedance_code_withRL/traj_tracking.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/graduate_project/chapter_2_id/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/graduate_project/chapter_2_ik/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/graduate_project/chapter_2_ik/traj_tracking.py" root0="SKIP_INSPECTION" />
-    <setting file="file://$PROJECT_DIR$/graduate_project/chapter_2_ik_2/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/learning/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part1.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/learning/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part2.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/learning/franka_impedance_control/franka_servo_control.py" root0="SKIP_INSPECTION" />
@@ -91,7 +171,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/robot/mujoco_learning/graduate_project/chapter_2_ik",
+    "last_opened_file_path": "/home/robot/mujoco_learning/graduate_project",
     "settings.editor.selected.configurable": "preferences.pluginManager"
   },
   "keyToStringList": {
@@ -102,8 +182,8 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/graduate_project/chapter_2_ik" />
       <recent name="$PROJECT_DIR$/graduate_project" />
+      <recent name="$PROJECT_DIR$/graduate_project/chapter_2_ik" />
       <recent name="$PROJECT_DIR$/graduate_project/4_kinematics_code_withRL2" />
       <recent name="$PROJECT_DIR$/graduate_project/4_kinematics_code_withRL2_test" />
       <recent name="$PROJECT_DIR$/graduate_project/chapter2_code_withRL" />
@@ -265,7 +345,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709537072081</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="基本完成了第二章运动学部分的图表绘制">
+      <option name="closed" value="true" />
+      <created>1709551804907</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1709551804907</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">

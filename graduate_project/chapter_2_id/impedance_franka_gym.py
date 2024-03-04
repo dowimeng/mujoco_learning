@@ -64,8 +64,8 @@ class ImpedanceFrankaGym(gym.Env):
 
         # 观察空间和动作空间
         self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(21,), dtype=np.float64)
-        # self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(14,), dtype=np.float32)
-        self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(7,), dtype=np.float32)
+        self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(14,), dtype=np.float32)
+        # self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(7,), dtype=np.float32)
 
 
 
@@ -143,6 +143,7 @@ class ImpedanceFrankaGym(gym.Env):
         # 计算轨迹速度
         q_d_vel = self.IKResult.qpos - self.traj_qpos
         # 阻抗控制律
+        # 这里对传进来的归一化的action进行放大处理
         damp = damp * 10 + 10
         spring = spring * 100 + 100
         tau = self.data.qfrc_bias + \
@@ -209,6 +210,22 @@ class ImpedanceFrankaGym(gym.Env):
         self.data_copy.site_xpos = self.data.site_xpos
         self.data_copy.site_xmat = self.data.site_xmat
 
+        # df_record_data = pd.DataFrame([record_data])
+        # df_record_data.to_csv('realtime_data.csv', mode='a', index= False, header=False)
+
+        # self.pos_controller(target_pos=self.target_pos,
+        #                     target_quat=self.target_quat,
+        #                     regularization_strength = action)
+        self.impedance_controller(target_pos=self.target_pos,
+                                  target_quat=self.target_quat,
+                                  regularization_strength=np.array([1., 1., 1., 1., 1., 1., 1.]),
+                            damp=action[7:],
+                            spring=action[:7])
+        #  执行仿真 mj_step
+
+        while (self.data.time - step_time < 1.0/60.0) :
+            mj.mj_step(self.model, self.data)
+
         # 记录到csv文件中
         record_data = np.append(self.data.site_xpos[0][:3], self.data.qpos)
 
@@ -217,17 +234,7 @@ class ImpedanceFrankaGym(gym.Env):
         rotation = R.from_quat(record_quat)
         euler_angles = rotation.as_euler('xyz', degrees=False)
         record_data = np.append(record_data, euler_angles)
-        # df_record_data = pd.DataFrame([record_data])
-        # df_record_data.to_csv('realtime_data.csv', mode='a', index= False, header=False)
-
-        self.pos_controller(target_pos=self.target_pos,
-                            target_quat=self.target_quat,
-                            regularization_strength = action)
-        print(action)
-        #  执行仿真 mj_step
-
-        while (self.data.time - step_time < 1.0/60.0) :
-            mj.mj_step(self.model, self.data)
+        record_data = np.append(record_data, self.data.actuator_force)
 
         # 记录误差值 并计算reward
         self.err_record()
