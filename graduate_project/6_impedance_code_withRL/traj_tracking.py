@@ -10,6 +10,8 @@ import numpy as np
 import impedance_franka_gym
 # import stable_baselines3
 from stable_baselines3 import A2C
+from stable_baselines3 import PPO
+from stable_baselines3 import DDPG
 import stable_baselines3.common.env_checker
 # 定义位置控制器
 if __name__ == "__main__":
@@ -28,17 +30,20 @@ if __name__ == "__main__":
     #     # custom_env.step(action=np.array([-0.8,-0.8,-0.8,-0.8,-0.8,-0.8,-0.8,
     #     #                                  1,1,1,1,1,1,1]))
 
-    model = A2C("MlpPolicy", custom_env, verbose=1)
-    model.learn(total_timesteps=10000)
+    # model = A2C("MlpPolicy", custom_env, verbose=1)
+    model = PPO("MlpPolicy", custom_env, verbose=1)
+    # model = DDPG("MlpPolicy", custom_env, verbose=1)
+
+    model.learn(total_timesteps=3600)
 
     vec_env = model.get_env()
     obs = vec_env.reset()
-    print(obs)
+    # print(obs)
     for i in range(1000):
         # print(1)
         action, _state = model.predict(obs, deterministic=True)
         # print(2)
         obs, reward, done, info = vec_env.step(action)
         # print(3)
-        print(action, reward)
+        # print(action, reward)
         vec_env.render("human")

@@ -13,6 +13,7 @@ data = np.array(df.values)
 plt.figure()
 for i in range(7):
     plt.plot(data[1:,i+13])
+    plt.legend(['关节1', '关节2', '关节3', '关节4', '关节5', '关节6', '关节7'])
 
 plt.figure()
 for i in [0,1,2,10,11,12]:
