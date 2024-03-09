@@ -61,8 +61,8 @@ class ImpedanceFrankaGym(gym.Env):
         self.cam.lookat = np.array([0.11680416692690154, 0.0030176585738958166, 0.38820110102502614])
 
         # 观察空间和动作空间
-        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(21,), dtype=np.float64)
-        self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(14,), dtype=np.float32)
+        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(1,), dtype=np.float64)
+        self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(7,), dtype=np.float32)
 
 
         # 一些必要的全局变量
@@ -75,6 +75,9 @@ class ImpedanceFrankaGym(gym.Env):
         self.err_norm = None# 位置姿态总误差
         self.IKResult = None # 运动学逆解
         self.traj_qpos = None # 控制器上一轮的解算位置
+        self.record_ex_ctrl = None # 控制器本应该输出的位置记录
+        self.record_real_ctrl = None # 控制器因为受限实际的控制位置记录
+        self.target_traj = None
 
         self.site_tracking_record = None # 记录每一次轨迹后末端跟踪情况
 
@@ -83,19 +86,16 @@ class ImpedanceFrankaGym(gym.Env):
 
     # 定义观察值
     def _get_obs(self):
-
-        site_quat = np.empty(shape=4, dtype=np.float64)
-        # target_quat = np.empty(shape=4, dtype=np.float64)
-        mj.mju_mat2Quat(site_quat, self.data.site_xmat[0])
-
         return np.concatenate(
             [
-                self.data.qpos.flatten()[:7],
-                self.data.site_xpos[0][:3],
-                site_quat,
-                # 要把target_pos 和 target_quat设置为全局变量
-                self.target_pos[self.i],
-                self.target_quat,
+                # 预留一个受限问题
+
+                [1],
+                # self.data.qpos.flatten()[:7],
+                # self.data.site_xpos[0][:3],
+                # site_quat,
+                # self.target_pos[self.i],
+                # self.target_quat,
             ]
         )
 
@@ -112,7 +112,8 @@ class ImpedanceFrankaGym(gym.Env):
                                           regularization_strength=regularization_strength,
                                           regularization_threshold=0.0001,
                                           max_steps=100)
-        self.data.ctrl = IKResult.qpos
+        # self.data.ctrl = IKResult.qpos
+        return IKResult
 
     def impedance_controller(self,target_pos, target_quat,
                              regularization_strength = np.array([1., 1., 1., 1., 1., 1., 1.]),
@@ -155,33 +156,19 @@ class ImpedanceFrankaGym(gym.Env):
         mj.mj_forward(self.model, self.data)
         self.data_copy = copy.copy(self.data)
 
-        self.N = 600
+        # 初始参数
+        self.N = 300
         self.i = 0
-        self.err_norm = np.inf
-        self.site_tracking_record = self.data.site_xpos[0][:3]
-
-        # 给轨迹,空间圆形 姿态固定
-        # center = np.array(self.data.site_xpos[0][:3])
-        # r = 0.1
-        # phi = np.linspace(0, 2 * np.pi, self.N)
-        # x_traj = center[0] + r * np.cos(phi) * np.cos(-np.pi / 4)
-        # y_traj = center[1] + r * np.sin(phi) * np.cos(-np.pi / 4)
-        # z_traj = center[2] + r * np.cos(phi) * np.sin(-np.pi / 4)
-        # target_traj = np.dstack((x_traj, y_traj, z_traj))
-
         # 竖直方向双纽线轨迹
         a = 0.2
         theta = np.linspace(-np.pi/2, 3*np.pi/2, self.N)
         center = np.array(self.data.site_xpos[0][:3])
         x_traj = center[0] + a * np.sin(theta) * np.cos(theta) / (1 + np.sin(theta) ** 2)
         y_traj = center[1] + a * np.cos(theta) / (1 + np.sin(theta) ** 2)
-        # z_traj = center[2] + 0.2 * a * np.absolute(np.cos(theta))
         z_traj = center[2] + np.zeros((np.shape(theta)[0]))
-        target_traj = np.dstack((x_traj, y_traj, z_traj))
-
-
+        self.target_traj = np.dstack((x_traj, y_traj, z_traj))
         # 目标点位置和姿态
-        self.target_pos = target_traj[0]
+        self.target_pos = self.target_traj[0]
         self.target_quat = np.empty(4, dtype=np.float64)
         mj.mju_mat2Quat(self.target_quat, self.data.site_xmat[0])
 
@@ -196,66 +183,108 @@ class ImpedanceFrankaGym(gym.Env):
     # 一步就是一个轨迹循环
     def step(self, action):
 
-        # 控制仿真帧率
-        # 注意模拟帧率和控制器帧率不同
-        step_time = self.data.time
+        # 清空记录
+        record_ex_ctrl = None
+        record_qpos = None
+        record_site_xpos = None
+        record_site_quat = None
 
-        # 执行一步控制器 pos_controller
-        self.data_copy.qpos = self.data.qpos
-        self.data_copy.site_xpos = self.data.site_xpos
-        self.data_copy.site_xmat = self.data.site_xmat
+        # 每一步循环一次轨迹循环 记住 重构代码
+        for i in range(self.N):
+            # print(i)
+            # 执行一步控制器 pos_controller
+            self.data_copy.qpos = self.data.qpos
+            self.data_copy.site_xpos = self.data.site_xpos
+            self.data_copy.site_xmat = self.data.site_xmat
 
-        self.impedance_controller(target_pos=self.target_pos[self.i],
-                            target_quat=self.target_quat,
-                            damp=action[:7],
-                            spring=action[7:])
-        #  执行仿真 mj_step
-        while (self.data.time - step_time < 1.0/60.0) :
-            mj.mj_step(self.model, self.data)
+            # 这里修改一下action的范围 将(-1 1)转到(0,10)
+            # action = (action + 1) * 5
+            IKResult = self.pos_controller(target_pos=self.target_pos[i],
+                                           target_quat=self.target_quat,
+                                           regularization_strength=action)
 
-        # 记录误差值 并计算reward
-        # 计算位置误差
-        err_pos = self.target_pos[self.i] - self.data.site_xpos[0][:3]
-        self.err_norm = np.linalg.norm(err_pos)
-        # 计算姿态误差
-        site_xquat = np.empty(4, dtype=np.float64)
-        neg_site_xquat = np.empty(4, dtype=np.float64)
-        err_rot_quat = np.empty(4, dtype=np.float64)
-        err_rot = np.empty(3, dtype=np.float64)
-        mj.mju_mat2Quat(site_xquat, self.data.site_xmat[0])
-        mj.mju_negQuat(neg_site_xquat, site_xquat)
-        mj.mju_mulQuat(err_rot_quat, self.target_quat, neg_site_xquat)
-        mj.mju_quat2Vel(err_rot, err_rot_quat, 1)
-        self.err_norm += np.linalg.norm(err_rot) * self.rot_weight
+            # 这里仅用于受限情况的强化学习 使用max min函数就行
+            # 本应该用于控制的量
+            ex_ctrl = IKResult.qpos
+            # 实际因为关节受限给到的控制量
+            real_ctrl = ex_ctrl
+            # 把执行过程中的ex_ctrl控制量记录下来
+            if i == 0:
+                record_ex_ctrl = ex_ctrl
+            else:
+                record_ex_ctrl = np.vstack((record_ex_ctrl, ex_ctrl))
+            # 给到控制量
+            # print(real_ctrl)
+            self.data.ctrl = real_ctrl
+            # self.data.ctrl = np.zeros(7)
 
-        reward = -self.err_norm
-        # print(reward)
+            # 控制仿真帧率
+            # 注意模拟帧率和控制器帧率不同
+            step_time = self.data.time
+            #  执行仿真 mj_step
+            while (self.data.time - step_time < 1.0 / 60.0):
+                mj.mj_step(self.model, self.data)
 
-        # 记录跟踪情况
-        self.site_tracking_record = np.vstack((self.site_tracking_record, self.data.site_xpos[0][:3]))
+            # 执行一步render
+            if self.render_mode == "human":
+                self._render_frame()
 
-        self.i += 1
-        # 如果轨迹结束 重新给定轨迹
-        if self.i == self.N:
-            plt.ion()
-            plt.clf()
-            ax_tracking = plt.axes(projection='3d')
-            ax_tracking.plot3D(self.target_pos[:,0], self.target_pos[:,1], self.target_pos[:,2], 'red')
-            ax_tracking.scatter3D(self.site_tracking_record[:, 0], self.site_tracking_record[:, 1], self.site_tracking_record[:, 2],
-                                  cmap='b')
-            ax_tracking.set_xlim((0.16,0.96))
-            ax_tracking.set_ylim((-0.2,0.2))
-            ax_tracking.set_zlim((0.6,0.65))
-            plt.pause(0.1)
-            plt.ioff()
+            # 记录关节位置和末端姿态
+            if i == 0:
+                record_qpos = self.data.qpos
+                record_site_xpos = self.data.site_xpos[0][:3]
+                record_site_quat = np.empty(4, dtype=np.float64)
+                mj.mju_mat2Quat(record_site_quat, self.data.site_xmat[0])
+
+            else:
+                record_qpos = np.vstack((record_qpos, self.data.qpos))
+                record_site_xpos = np.vstack((record_site_xpos, self.data.site_xpos[0][:3]))
+
+                site_quat = np.empty(4, dtype=np.float64)
+                mj.mju_mat2Quat(site_quat, self.data.site_xmat[0])
+                record_site_quat = np.vstack((record_site_quat, site_quat))
 
 
-            self.site_tracking_record = self.data.site_xpos[0][:3]
-            self.i = 0
+        # 需要记录一些数据
+        # obs需要 受限关节编号和时长
+        # reward 连续 or 离散?? 需要 目标轨迹和实际末端轨迹
+        # 因此需要 关节角度变化 关节命令变化 末端点姿态变化 用几个数据存一下
 
-        # 执行一步render
-        if self.render_mode == "human":
-            self._render_frame()
+        # 控制偏差
+        error_ctrl = record_qpos - record_ex_ctrl
+        # 位置偏差
+        error_xpos = record_site_xpos - self.target_traj
+
+        # 绘制一下跟踪图像
+        plt.ion()
+        plt.clf()
+        ax_tracking = plt.axes(projection='3d')
+        ax_tracking.plot3D(self.target_pos[:, 0], self.target_pos[:, 1], self.target_pos[:, 2], 'red')
+        ax_tracking.scatter3D(record_site_xpos[:, 0], record_site_xpos[:, 1],
+                              record_site_xpos[:, 2], cmap='b')
+        ax_tracking.set_xlim((0.16,0.96))
+        ax_tracking.set_ylim((-0.2,0.2))
+        ax_tracking.set_zlim((0.6,0.65))
+        plt.pause(0.1)
+        plt.ioff()
+
+        reward = np.absolute(error_xpos)
+        reward = np.mean(reward)
+        # # 计算位置误差
+        # err_pos = self.target_pos[self.i] - self.data.site_xpos[0][:3]
+        # self.err_norm = np.linalg.norm(err_pos)
+        # # 计算姿态误差
+        # site_xquat = np.empty(4, dtype=np.float64)
+        # neg_site_xquat = np.empty(4, dtype=np.float64)
+        # err_rot_quat = np.empty(4, dtype=np.float64)
+        # err_rot = np.empty(3, dtype=np.float64)
+        # mj.mju_mat2Quat(site_xquat, self.data.site_xmat[0])
+        # mj.mju_negQuat(neg_site_xquat, site_xquat)
+        # mj.mju_mulQuat(err_rot_quat, self.target_quat, neg_site_xquat)
+        # mj.mju_quat2Vel(err_rot, err_rot_quat, 1)
+        # self.err_norm += np.linalg.norm(err_rot) * self.rot_weight
+        #
+        # reward = -self.err_norm
 
         observation = self._get_obs()
         info = self._get_info()

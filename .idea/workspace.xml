@@ -4,169 +4,90 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="基本完成了第二章运动学部分的图表绘制">
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/finger_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/finger_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/hand.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/hand_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/hand_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/hand_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/hand_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/hand_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link0_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link1.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link3.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link3_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link3_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link3_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link3_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link4.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link4_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link4_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link4_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link4_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link5_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link5_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link5_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link5_collision_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link5_collision_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link5_collision_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_12.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_13.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_14.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_15.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_16.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link6_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/assets/link7_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/hand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/panda.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/panda.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/panda_nohand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/franka_emika_panda/scene.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/gym_pusher_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/impedance_franka_gym.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/inverse_kinematics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/7_impedance_interaction/traj_tracking.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/LICENSE" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/README.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/finger_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/finger_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link1.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link2.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_collision_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_collision_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_collision_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_10.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_11.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_12.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_13.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_14.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_15.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_16.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_8.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_9.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7.stl" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_0.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_1.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_2.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_3.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_4.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_5.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_6.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_7.obj" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/hand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/panda.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/panda.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/panda_nohand.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/push_joint.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/scene.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/gym_pusher_test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/impedance_franka_gym.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/inverse_kinematics.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/test.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/traj_tracking.py" afterDir="false" />
+    <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="开始第三章的实验环境">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/6_impedance_code_withRL/traj_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/6_impedance_code_withRL/traj_tracking.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_2_id/pic_plot.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_2_id/pic_plot.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/LICENSE" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/LICENSE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/finger_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/finger_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/finger_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/finger_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand.stl" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/hand.stl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/hand_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/hand_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/hand_2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_3.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/hand_3.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/hand_4.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/hand_4.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0.stl" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0.stl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_10.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_10.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_11.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_11.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_3.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_3.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_4.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_4.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_5.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_5.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_7.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_7.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_8.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_8.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link0_9.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link0_9.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link1.stl" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link1.stl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link2.stl" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link2.stl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3.stl" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link3.stl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link3_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link3_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3_2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link3_2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link3_3.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link3_3.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4.stl" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link4.stl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link4_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link4_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4_2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link4_2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link4_3.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link4_3.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link5_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link5_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link5_2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_collision_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link5_collision_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_collision_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link5_collision_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link5_collision_2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link5_collision_2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6.stl" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6.stl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_10.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_10.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_11.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_11.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_12.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_12.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_13.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_13.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_14.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_14.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_15.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_15.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_16.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_16.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_3.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_3.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_4.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_4.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_5.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_5.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_6.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_6.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_7.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_7.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_8.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_8.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link6_9.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link6_9.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7.stl" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7.stl" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_0.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7_0.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_1.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7_1.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_2.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7_2.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_3.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7_3.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_4.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7_4.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_5.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7_5.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_6.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7_6.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/assets/link7_7.obj" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/assets/link7_7.obj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/hand.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/hand.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/panda.png" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/panda.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/panda.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/panda.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/panda_nohand.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/panda_nohand.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/push_joint.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/franka_emika_panda/scene.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/franka_emika_panda/scene.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/gym_pusher_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/gym_pusher_test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/impedance_franka_gym.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/impedance_franka_gym.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/inverse_kinematics.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/inverse_kinematics.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/test.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/8_impedance_interaction_withjoint/traj_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/traj_tracking.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/realtime_data.csv" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/realtime_data.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/test.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -204,6 +125,9 @@
     <setting file="file://$PROJECT_DIR$/graduate_project/chapter_2_id/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/graduate_project/chapter_2_ik/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/graduate_project/chapter_2_ik/traj_tracking.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/graduate_project/chapter_2_ik_2/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/impedance_franka_gym.py" root0="SKIP_INSPECTION" />
+    <setting file="file://$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/traj_tracking.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/learning/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part1.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/learning/Inverse-and-Forward-Kinematics-for-Franka-Panda/Controls/PandaArmControl_Part2.py" root0="SKIP_INSPECTION" />
     <setting file="file://$PROJECT_DIR$/learning/franka_impedance_control/franka_servo_control.py" root0="SKIP_INSPECTION" />
@@ -220,7 +144,7 @@
     <option name="stateVersion" value="1" />
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
@@ -233,33 +157,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "DefaultHtmlFileTemplate": "HTML File",
-    "Python.fixed_point.executor": "Run",
-    "Python.franka_impedance_servo_control.executor": "Run",
-    "Python.franka_servo_control.executor": "Run",
-    "Python.gym_pusher_test.executor": "Run",
-    "Python.impedance_franka_gym.executor": "Run",
-    "Python.impedance_test.executor": "Run",
-    "Python.inverse_kinematics.executor": "Run",
-    "Python.pic_plot.executor": "Run",
-    "Python.pic_plot_2.executor": "Run",
-    "Python.position_test.executor": "Run",
-    "Python.test.executor": "Run",
-    "Python.traj_tracking.executor": "Run",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "last_opened_file_path": "/home/robot/mujoco_learning/graduate_project",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;Python.fixed_point.executor&quot;: &quot;Run&quot;,
+    &quot;Python.franka_impedance_servo_control.executor&quot;: &quot;Run&quot;,
+    &quot;Python.franka_servo_control.executor&quot;: &quot;Run&quot;,
+    &quot;Python.gym_pusher_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.impedance_franka_gym.executor&quot;: &quot;Run&quot;,
+    &quot;Python.impedance_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.inverse_kinematics.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pic_plot.executor&quot;: &quot;Run&quot;,
+    &quot;Python.pic_plot_2.executor&quot;: &quot;Run&quot;,
+    &quot;Python.position_test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.test.executor&quot;: &quot;Run&quot;,
+    &quot;Python.traj_tracking.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/robot/mujoco_learning/graduate_project&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   },
-  "keyToStringList": {
-    "ChangesTree.GroupingKeys": [
-      "directory"
+  &quot;keyToStringList&quot;: {
+    &quot;ChangesTree.GroupingKeys&quot;: [
+      &quot;directory&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/graduate_project" />
@@ -441,7 +365,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709561011351</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="开始第三章的实验环境">
+      <option name="closed" value="true" />
+      <created>1709911187338</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1709911187338</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -458,6 +390,7 @@
     <MESSAGE value="1" />
     <MESSAGE value="推动了第二章图表的绘制进度" />
     <MESSAGE value="基本完成了第二章运动学部分的图表绘制" />
-    <option name="LAST_COMMIT_MESSAGE" value="基本完成了第二章运动学部分的图表绘制" />
+    <MESSAGE value="开始第三章的实验环境" />
+    <option name="LAST_COMMIT_MESSAGE" value="开始第三章的实验环境" />
   </component>
 </project>
