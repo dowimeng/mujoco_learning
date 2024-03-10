@@ -31,19 +31,19 @@ if __name__ == "__main__":
     #     #                                  1,1,1,1,1,1,1]))
 
     # model = A2C("MlpPolicy", custom_env, verbose=1)
-    model = PPO("MlpPolicy", custom_env, verbose=1)
-    # model = DDPG("MlpPolicy", custom_env, verbose=1)
+    # model = PPO("MlpPolicy", custom_env, verbose=1)
+    model = DDPG("MlpPolicy", custom_env, verbose=1)
 
-    model.learn(total_timesteps=3600)
+    model.learn(total_timesteps=6)
 
     vec_env = model.get_env()
     obs = vec_env.reset()
     # print(obs)
-    for i in range(1000):
-        # print(1)
-        action, _state = model.predict(obs, deterministic=True)
-        # print(2)
-        obs, reward, done, info = vec_env.step(action)
-        # print(3)
-        # print(action, reward)
-        vec_env.render("human")
+    # for i in range(1000):
+    #     # print(1)
+    #     action, _state = model.predict(obs, deterministic=True)
+    #     # print(2)
+    #     obs, reward, done, info = vec_env.step(action)
+    #     # print(3)
+    #     # print(action, reward)
+    #     vec_env.render("human")

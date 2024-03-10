@@ -61,7 +61,7 @@ class ImpedanceFrankaGym(gym.Env):
         self.cam.lookat = np.array([0.11680416692690154, 0.0030176585738958166, 0.38820110102502614])
 
         # 观察空间和动作空间
-        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(1,), dtype=np.float64)
+        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(21,), dtype=np.float64)
         self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(7,), dtype=np.float32)
 
 
@@ -78,6 +78,9 @@ class ImpedanceFrankaGym(gym.Env):
         self.record_ex_ctrl = None # 控制器本应该输出的位置记录
         self.record_real_ctrl = None # 控制器因为受限实际的控制位置记录
         self.target_traj = None
+        self.max_qpos = None
+        self.min_qpos = None
+        self.saturation_time = None
 
         self.site_tracking_record = None # 记录每一次轨迹后末端跟踪情况
 
@@ -89,13 +92,14 @@ class ImpedanceFrankaGym(gym.Env):
         return np.concatenate(
             [
                 # 预留一个受限问题
-
-                [1],
                 # self.data.qpos.flatten()[:7],
                 # self.data.site_xpos[0][:3],
                 # site_quat,
                 # self.target_pos[self.i],
                 # self.target_quat,
+                self.max_qpos,
+                self.min_qpos,
+                self.saturation_time,
             ]
         )
 
@@ -103,7 +107,7 @@ class ImpedanceFrankaGym(gym.Env):
     def _get_info(self):
         # pass
         return {
-            "distance" : self.err_norm
+            "None" : None
         }
 
     def pos_controller(self, target_pos, target_quat, regularization_strength = np.array([1., 1., 1., 1., 1., 1., 1.])):
@@ -157,7 +161,7 @@ class ImpedanceFrankaGym(gym.Env):
         self.data_copy = copy.copy(self.data)
 
         # 初始参数
-        self.N = 300
+        self.N = 600
         self.i = 0
         # 竖直方向双纽线轨迹
         a = 0.2
@@ -167,6 +171,15 @@ class ImpedanceFrankaGym(gym.Env):
         y_traj = center[1] + a * np.cos(theta) / (1 + np.sin(theta) ** 2)
         z_traj = center[2] + np.zeros((np.shape(theta)[0]))
         self.target_traj = np.dstack((x_traj, y_traj, z_traj))
+
+        # center = np.array(self.data.site_xpos[0][:3])
+        # r = 0.1
+        # phi = np.linspace(0, 2 * np.pi, self.N)
+        # x_traj = center[0] + r * np.cos(phi) * np.cos(-np.pi / 4)
+        # y_traj = center[1] + r * np.sin(phi) * np.cos(-np.pi / 4)
+        # z_traj = center[2] + r * np.cos(phi) * np.sin(-np.pi / 4)
+        # self.target_traj = np.dstack((x_traj, y_traj, z_traj))
+
         # 目标点位置和姿态
         self.target_pos = self.target_traj[0]
         self.target_quat = np.empty(4, dtype=np.float64)
@@ -175,30 +188,35 @@ class ImpedanceFrankaGym(gym.Env):
         if self.render_mode == "human":
             self._render_frame()
 
+        self.max_qpos = np.zeros(7)
+        self.min_qpos = np.zeros(7)
+        self.saturation_time = np.zeros(7)
+
         observation = self._get_obs()
         info = self._get_info()
 
         return observation, info
 
-    # 一步就是一个轨迹循环
     def step(self, action):
-
         # 清空记录
         record_ex_ctrl = None
         record_qpos = None
         record_site_xpos = None
         record_site_quat = None
+        self.gap_qpos = None
+        self.saturation_time = None
+
+        # action = (action + 1)
+        print("action = ", action)
 
         # 每一步循环一次轨迹循环 记住 重构代码
         for i in range(self.N):
-            # print(i)
             # 执行一步控制器 pos_controller
             self.data_copy.qpos = self.data.qpos
             self.data_copy.site_xpos = self.data.site_xpos
             self.data_copy.site_xmat = self.data.site_xmat
 
             # 这里修改一下action的范围 将(-1 1)转到(0,10)
-            # action = (action + 1) * 5
             IKResult = self.pos_controller(target_pos=self.target_pos[i],
                                            target_quat=self.target_quat,
                                            regularization_strength=action)
@@ -214,9 +232,7 @@ class ImpedanceFrankaGym(gym.Env):
             else:
                 record_ex_ctrl = np.vstack((record_ex_ctrl, ex_ctrl))
             # 给到控制量
-            # print(real_ctrl)
             self.data.ctrl = real_ctrl
-            # self.data.ctrl = np.zeros(7)
 
             # 控制仿真帧率
             # 注意模拟帧率和控制器帧率不同
@@ -259,15 +275,25 @@ class ImpedanceFrankaGym(gym.Env):
         plt.ion()
         plt.clf()
         ax_tracking = plt.axes(projection='3d')
-        ax_tracking.plot3D(self.target_pos[:, 0], self.target_pos[:, 1], self.target_pos[:, 2], 'red')
         ax_tracking.scatter3D(record_site_xpos[:, 0], record_site_xpos[:, 1],
                               record_site_xpos[:, 2], cmap='b')
+        ax_tracking.plot3D(self.target_pos[:, 0], self.target_pos[:, 1], self.target_pos[:, 2], 'red')
         ax_tracking.set_xlim((0.16,0.96))
         ax_tracking.set_ylim((-0.2,0.2))
-        ax_tracking.set_zlim((0.6,0.65))
+        ax_tracking.set_zlim((0.4,0.8))
         plt.pause(0.1)
         plt.ioff()
 
+        # 这里给定观察值 就设置为关节最大转动差值 和 饱和偏差时间 共14个变量吧
+        # 关节最大转动差值
+        self.max_qpos = np.max(record_qpos, axis=0)
+        self.min_qpos = np.min(record_qpos, axis=0)
+        # 饱和偏差时间
+        error_ctrl = np.absolute(error_ctrl)
+        self.saturation_time = np.sum( error_ctrl > 0.01, axis=0)
+        print("saturation_time = ", self.saturation_time)
+
+        # 计算reward 综合考虑跟踪误差 和 饱和偏差时间
         reward = np.absolute(error_xpos)
         reward = np.mean(reward)
         # # 计算位置误差
@@ -289,7 +315,7 @@ class ImpedanceFrankaGym(gym.Env):
         observation = self._get_obs()
         info = self._get_info()
 
-        return observation, reward, False, False, info
+        return observation, reward, True, False, info
 
     def render(self):
         if self.render_mode == "rgb_array":

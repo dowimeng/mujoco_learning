@@ -1,5 +1,7 @@
 import pandas as pd
 import numpy as np
 
-print(np.random.rand((3)))
-print(np.random.rand((3)))
+a = np.array([[1,1,1],
+     [2,1,0],
+     [0,0,0]])
+print(np.sum(a>0,axis=0))
