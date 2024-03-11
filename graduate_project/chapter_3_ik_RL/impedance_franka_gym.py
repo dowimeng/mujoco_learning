@@ -75,13 +75,23 @@ class ImpedanceFrankaGym(gym.Env):
         self.err_norm = None# 位置姿态总误差
         self.IKResult = None # 运动学逆解
         self.traj_qpos = None # 控制器上一轮的解算位置
-        self.record_ex_ctrl = None # 控制器本应该输出的位置记录
+        self.record_ex_ctrl = None        # 控制器本应该输出的位置记录
         self.record_real_ctrl = None # 控制器因为受限实际的控制位置记录
         self.target_traj = None
         self.max_qpos = None
         self.min_qpos = None
         self.saturation_time = None
 
+        self.ex_ctrl = None
+        self.record_qpos = None
+        self.error_ctrl = None
+        self.record_site_xpos = None
+        self.error_xpos = None
+        self.record_site_quat = None
+
+        self.first_time = True
+        
+        
         self.site_tracking_record = None # 记录每一次轨迹后末端跟踪情况
 
         # 不懂第一句是什么
@@ -161,9 +171,9 @@ class ImpedanceFrankaGym(gym.Env):
         self.data_copy = copy.copy(self.data)
 
         # 初始参数
-        self.N = 600
+        self.N = 300
         self.i = 0
-        # 竖直方向双纽线轨迹
+        # xy方向双纽线轨迹
         a = 0.2
         theta = np.linspace(-np.pi/2, 3*np.pi/2, self.N)
         center = np.array(self.data.site_xpos[0][:3])
@@ -171,14 +181,6 @@ class ImpedanceFrankaGym(gym.Env):
         y_traj = center[1] + a * np.cos(theta) / (1 + np.sin(theta) ** 2)
         z_traj = center[2] + np.zeros((np.shape(theta)[0]))
         self.target_traj = np.dstack((x_traj, y_traj, z_traj))
-
-        # center = np.array(self.data.site_xpos[0][:3])
-        # r = 0.1
-        # phi = np.linspace(0, 2 * np.pi, self.N)
-        # x_traj = center[0] + r * np.cos(phi) * np.cos(-np.pi / 4)
-        # y_traj = center[1] + r * np.sin(phi) * np.cos(-np.pi / 4)
-        # z_traj = center[2] + r * np.cos(phi) * np.sin(-np.pi / 4)
-        # self.target_traj = np.dstack((x_traj, y_traj, z_traj))
 
         # 目标点位置和姿态
         self.target_pos = self.target_traj[0]
@@ -188,8 +190,8 @@ class ImpedanceFrankaGym(gym.Env):
         if self.render_mode == "human":
             self._render_frame()
 
-        self.max_qpos = np.zeros(7)
-        self.min_qpos = np.zeros(7)
+        self.max_qpos = np.ones(7) * np.pi
+        self.min_qpos = - np.ones(7) * np.pi
         self.saturation_time = np.zeros(7)
 
         observation = self._get_obs()
@@ -199,14 +201,15 @@ class ImpedanceFrankaGym(gym.Env):
 
     def step(self, action):
         # 清空记录
-        record_ex_ctrl = None
-        record_qpos = None
-        record_site_xpos = None
-        record_site_quat = None
-        self.gap_qpos = None
-        self.saturation_time = None
+        self.record_ex_ctrl = None
+        self.record_qpos = None
+        self.record_site_xpos = None
+        self.record_site_quat = None
 
-        # action = (action + 1)
+        done = False
+        # self.saturation_time = None
+
+        action = (action + 1) * 2
         print("action = ", action)
 
         # 每一步循环一次轨迹循环 记住 重构代码
@@ -226,11 +229,16 @@ class ImpedanceFrankaGym(gym.Env):
             ex_ctrl = IKResult.qpos
             # 实际因为关节受限给到的控制量
             real_ctrl = ex_ctrl
-            # 把执行过程中的ex_ctrl控制量记录下来
+            # 限制关节4的运动角度
+            if real_ctrl[3] > -1.4:
+                real_ctrl[3] = -1.4
+            elif real_ctrl[3] < -1.6:
+                real_ctrl[3] = -1.6
+            # 把执行过程中的self.ex_ctrl控制量记录下来
             if i == 0:
-                record_ex_ctrl = ex_ctrl
+                self.record_ex_ctrl = ex_ctrl
             else:
-                record_ex_ctrl = np.vstack((record_ex_ctrl, ex_ctrl))
+                self.record_ex_ctrl = np.vstack((self.record_ex_ctrl, ex_ctrl))
             # 给到控制量
             self.data.ctrl = real_ctrl
 
@@ -247,18 +255,18 @@ class ImpedanceFrankaGym(gym.Env):
 
             # 记录关节位置和末端姿态
             if i == 0:
-                record_qpos = self.data.qpos
-                record_site_xpos = self.data.site_xpos[0][:3]
-                record_site_quat = np.empty(4, dtype=np.float64)
-                mj.mju_mat2Quat(record_site_quat, self.data.site_xmat[0])
+                self.record_qpos = self.data.qpos
+                self.record_site_xpos = self.data.site_xpos[0][:3]
+                self.record_site_quat = np.empty(4, dtype=np.float64)
+                mj.mju_mat2Quat(self.record_site_quat, self.data.site_xmat[0])
 
             else:
-                record_qpos = np.vstack((record_qpos, self.data.qpos))
-                record_site_xpos = np.vstack((record_site_xpos, self.data.site_xpos[0][:3]))
+                self.record_qpos = np.vstack((self.record_qpos, self.data.qpos))
+                self.record_site_xpos = np.vstack((self.record_site_xpos, self.data.site_xpos[0][:3]))
 
                 site_quat = np.empty(4, dtype=np.float64)
                 mj.mju_mat2Quat(site_quat, self.data.site_xmat[0])
-                record_site_quat = np.vstack((record_site_quat, site_quat))
+                self.record_site_quat = np.vstack((self.record_site_quat, site_quat))
 
 
         # 需要记录一些数据
@@ -267,35 +275,60 @@ class ImpedanceFrankaGym(gym.Env):
         # 因此需要 关节角度变化 关节命令变化 末端点姿态变化 用几个数据存一下
 
         # 控制偏差
-        error_ctrl = record_qpos - record_ex_ctrl
+        self.error_ctrl = self.record_qpos - self.record_ex_ctrl
         # 位置偏差
-        error_xpos = record_site_xpos - self.target_traj
+        self.error_xpos = self.record_site_xpos - self.target_traj
 
         # 绘制一下跟踪图像
         plt.ion()
         plt.clf()
         ax_tracking = plt.axes(projection='3d')
-        ax_tracking.scatter3D(record_site_xpos[:, 0], record_site_xpos[:, 1],
-                              record_site_xpos[:, 2], cmap='b')
+        ax_tracking.scatter3D(self.record_site_xpos[:, 0], self.record_site_xpos[:, 1],
+                              self.record_site_xpos[:, 2], cmap='b')
         ax_tracking.plot3D(self.target_pos[:, 0], self.target_pos[:, 1], self.target_pos[:, 2], 'red')
         ax_tracking.set_xlim((0.16,0.96))
         ax_tracking.set_ylim((-0.2,0.2))
         ax_tracking.set_zlim((0.4,0.8))
-        plt.pause(0.1)
+
+        plt.pause(1)
+
+        joints = plt.axes()
+        for i in range(7):
+            joints.plot(self.record_qpos[:,i])
+        joints.legend(['1','2','3','4','5','6','7'])
+        # plt.pause(0.1)
+        plt.pause(1)
         plt.ioff()
 
         # 这里给定观察值 就设置为关节最大转动差值 和 饱和偏差时间 共14个变量吧
         # 关节最大转动差值
-        self.max_qpos = np.max(record_qpos, axis=0)
-        self.min_qpos = np.min(record_qpos, axis=0)
+        self.max_qpos = np.max(self.record_qpos, axis=0)
+        self.min_qpos = np.min(self.record_qpos, axis=0)
         # 饱和偏差时间
-        error_ctrl = np.absolute(error_ctrl)
-        self.saturation_time = np.sum( error_ctrl > 0.01, axis=0)
+        self.error_ctrl = np.absolute(self.error_ctrl)
+        self.saturation_time = np.sum( self.error_ctrl > 0.05, axis=0)
         print("saturation_time = ", self.saturation_time)
 
         # 计算reward 综合考虑跟踪误差 和 饱和偏差时间
-        reward = np.absolute(error_xpos)
-        reward = np.mean(reward)
+        # 计算每个点的误差值后求和
+        error_xpos = np.linalg.norm(self.error_xpos, axis=1) # 每个点的位置误差
+        error_xpos = - np.mean(error_xpos)
+        # 计算饱和偏差时间
+        total_saturation_time = sum(self.saturation_time)
+
+        # 终止条件
+        if error_xpos < -0.5 or total_saturation_time > self.N * 7 * 0.1:
+            done = True
+            reward = - 10
+        elif total_saturation_time == 0:
+            done = True
+            reward = 1 + error_xpos
+        else:
+            done = False
+            reward = 1 + error_xpos + (-0.1 * total_saturation_time)
+
+
+        print(reward)
         # # 计算位置误差
         # err_pos = self.target_pos[self.i] - self.data.site_xpos[0][:3]
         # self.err_norm = np.linalg.norm(err_pos)
@@ -315,7 +348,7 @@ class ImpedanceFrankaGym(gym.Env):
         observation = self._get_obs()
         info = self._get_info()
 
-        return observation, reward, True, False, info
+        return observation, reward, done, False, info
 
     def render(self):
         if self.render_mode == "rgb_array":

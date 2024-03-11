@@ -27,15 +27,18 @@ if __name__ == "__main__":
     #
     # while 1 :
     #     custom_env.step(action=np.ones(7))
-    for i in range(2):
-        custom_env.step(action=np.zeros(7))
+    # for i in range(2):
+    #     custom_env.step(action=np.ones(7))
 
-    # model = DDPG("MlpPolicy", custom_env, verbose=1)
-    # model.learn(total_timesteps=3)
+    # custom_env.step(action=np.ones(7))
+    # custom_env.step(action=np.ones(7))
     #
-    # vec_env = model.get_env()
-    # obs = vec_env.reset()
-    # for i in range(5):
-    #     action, _state = model.predict(obs, deterministic=True)
-    #     obs, reward, done, info = vec_env.step(action)
-    #     vec_env.render("human")
+    model = PPO("MlpPolicy", custom_env, verbose=1)
+    model.learn(total_timesteps=100)
+    #
+    vec_env = model.get_env()
+    obs = vec_env.reset()
+    for i in range(5):
+        action, _state = model.predict(obs, deterministic=True)
+        obs, reward, done, info = vec_env.step(action)
+        vec_env.render("human")

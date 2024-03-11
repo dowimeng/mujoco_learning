@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="开始第三章的实验环境">
+    <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="基本完成了第三章的实验环境">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/6_impedance_code_withRL/traj_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/6_impedance_code_withRL/traj_tracking.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/test.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_2_ik_2/test.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/impedance_franka_gym.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/impedance_franka_gym.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/traj_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_3_ik_RL/traj_tracking.py" afterDir="false" />
@@ -79,33 +78,33 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
-    &quot;Python.fixed_point.executor&quot;: &quot;Run&quot;,
-    &quot;Python.franka_impedance_servo_control.executor&quot;: &quot;Run&quot;,
-    &quot;Python.franka_servo_control.executor&quot;: &quot;Run&quot;,
-    &quot;Python.gym_pusher_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.impedance_franka_gym.executor&quot;: &quot;Run&quot;,
-    &quot;Python.impedance_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.inverse_kinematics.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pic_plot.executor&quot;: &quot;Run&quot;,
-    &quot;Python.pic_plot_2.executor&quot;: &quot;Run&quot;,
-    &quot;Python.position_test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.test.executor&quot;: &quot;Run&quot;,
-    &quot;Python.traj_tracking.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/robot/mujoco_learning/graduate_project&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.fixed_point.executor": "Run",
+    "Python.franka_impedance_servo_control.executor": "Run",
+    "Python.franka_servo_control.executor": "Run",
+    "Python.gym_pusher_test.executor": "Run",
+    "Python.impedance_franka_gym.executor": "Run",
+    "Python.impedance_test.executor": "Run",
+    "Python.inverse_kinematics.executor": "Run",
+    "Python.pic_plot.executor": "Run",
+    "Python.pic_plot_2.executor": "Run",
+    "Python.position_test.executor": "Run",
+    "Python.test.executor": "Run",
+    "Python.traj_tracking.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "last_opened_file_path": "/home/robot/mujoco_learning/graduate_project",
+    "settings.editor.selected.configurable": "preferences.pluginManager"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;ChangesTree.GroupingKeys&quot;: [
-      &quot;directory&quot;
+  "keyToStringList": {
+    "ChangesTree.GroupingKeys": [
+      "directory"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/graduate_project" />
@@ -122,7 +121,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-python-sdk-50da183f06c8-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.13135.95" />
+        <option value="bundled-python-sdk-d68999036c7f-d3b881c8e49f-com.jetbrains.pycharm.community.sharedIndexes.bundled-PC-233.14475.56" />
       </set>
     </attachedChunks>
   </component>
@@ -295,7 +294,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709911187338</updated>
     </task>
-    <option name="localTasksCounter" value="21" />
+    <task id="LOCAL-00021" summary="基本完成了第三章的实验环境">
+      <option name="closed" value="true" />
+      <created>1710080219084</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1710080219084</updated>
+    </task>
+    <option name="localTasksCounter" value="22" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -313,6 +320,7 @@
     <MESSAGE value="推动了第二章图表的绘制进度" />
     <MESSAGE value="基本完成了第二章运动学部分的图表绘制" />
     <MESSAGE value="开始第三章的实验环境" />
-    <option name="LAST_COMMIT_MESSAGE" value="开始第三章的实验环境" />
+    <MESSAGE value="基本完成了第三章的实验环境" />
+    <option name="LAST_COMMIT_MESSAGE" value="基本完成了第三章的实验环境" />
   </component>
 </project>
