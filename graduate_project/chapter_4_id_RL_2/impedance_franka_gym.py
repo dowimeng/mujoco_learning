@@ -61,57 +61,74 @@ class ImpedanceFrankaGym(gym.Env):
         self.cam.lookat = np.array([0.11680416692690154, 0.0030176585738958166, 0.38820110102502614])
 
         # 观察空间和动作空间
-        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(21,), dtype=np.float64)
-        self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(7,), dtype=np.float32)
+        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(56,), dtype=np.float64)
+        self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(21,), dtype=np.float32)
 
 
         # 一些必要的全局变量
         self.target_pos = None
         self.target_quat = None
-        self.action = None
         self.N = None  # 这是轨迹点的数量
         self.i = None  # 这是运行到第几个轨迹点
-        self.rot_weight = 1.0 # 确定旋转误差相对于平移误差的权重
-        self.err_norm = None# 位置姿态总误差
-        self.IKResult = None # 运动学逆解
         self.traj_qpos = None # 控制器上一轮的解算位置
-        self.record_ex_ctrl = None        # 控制器本应该输出的位置记录
-        self.record_real_ctrl = None # 控制器因为受限实际的控制位置记录
         self.target_traj = None
-        self.max_qpos = None
-        self.min_qpos = None
         self.saturation_time = None
 
-        self.ex_ctrl = None
-        self.record_qpos = None
-        self.error_ctrl = None
-        self.record_site_xpos = None
-        self.error_xpos = None
-        self.record_site_quat = None
+        # 初始化记录数据
+        self.record_torque_control = None  # 控制力矩
+        self.record_qpos_control = None # 控制关节角
+        self.record_qpos_real = None  # 实际关节角
+        self.record_spring = None  # spring值
+        self.record_damp = None  # damp值
+        self.record_weight = None  # 阻尼最小二乘权重
+        self.record_xpos = None  # 末端位置
+        self.record_xmat = None  # 末端角度
 
-        self.first_time = True
-        
-        
-        self.site_tracking_record = None # 记录每一次轨迹后末端跟踪情况
+        self.spring = None
+        self.damp = None
+        self.weight = None
 
         # 不懂第一句是什么
         self.render_mode = render_mode
 
     # 定义观察值
     def _get_obs(self):
-        return np.concatenate(
-            [
-                # 预留一个受限问题
-                # self.data.qpos.flatten()[:7],
-                # self.data.site_xpos[0][:3],
-                # site_quat,
-                # self.target_pos[self.i],
-                # self.target_quat,
-                self.max_qpos,
-                self.min_qpos,
-                self.saturation_time,
-            ]
-        )
+
+        site_quat = np.empty(4, dtype=np.float64)
+        mj.mju_mat2Quat(site_quat, self.data.site_xmat[0])
+
+        if self.i == 0 :
+            return np.concatenate(
+                [
+                    # 预留一个受限问题
+                    self.record_qpos_control,
+                    self.record_qpos_real,
+                    self.record_torque_control,
+                    self.target_pos[self.i],
+                    self.data.site_xpos[0][:3],
+                    self.target_quat,
+                    site_quat,
+                    self.spring,
+                    self.damp,
+                    self.weight,
+                ]
+            )
+        else:
+            return np.concatenate(
+                [
+                    # 预留一个受限问题
+                    self.record_qpos_control[-1, :],
+                    self.record_qpos_real[-1, :],
+                    self.record_torque_control[-1, :],
+                    self.target_pos[self.i],
+                    self.data.site_xpos[0][:3],
+                    self.target_quat,
+                    site_quat,
+                    self.spring,
+                    self.damp,
+                    self.weight,
+                ]
+            )
 
     # 定义信息值
     def _get_info(self):
@@ -130,16 +147,12 @@ class ImpedanceFrankaGym(gym.Env):
         return IKResult
 
     def impedance_controller(self,target_pos, target_quat,
-                             regularization_strength = np.array([1., 1., 1., 1., 1., 1., 1.]),
-                             damp = np.array([0,0,0,0,0,0,0]),
-                             spring = np.array([0,0,0,0,0,0,0])):
+                             regularization_strength = np.ones(7),
+                             damp = np.ones(7) * 10,
+                             spring = np.ones(7) * 100):
 
-        if self.IKResult == None:
-            self.traj_qpos = np.zeros(shape=(7,))
-        else:
-            self.traj_qpos = self.IKResult.qpos
         # 计算运动学解
-        self.IKResult = ik.qpos_from_site_pose(self.model, self.data_copy, site_name="attachment_site",
+        IKResult = ik.qpos_from_site_pose(self.model, self.data_copy, site_name="attachment_site",
                                           target_pos=target_pos, target_quat=target_quat,
                                           regularization_strength=regularization_strength,
                                           regularization_threshold=0.0001,
@@ -151,17 +164,14 @@ class ImpedanceFrankaGym(gym.Env):
         # mj.mj_fullM(self.model, M, self.data.qM)
         # 科氏力和重力的和 data.qfrc_bias
         # 计算轨迹速度
-        q_d_vel = self.IKResult.qpos - self.traj_qpos
+        q_d_vel = IKResult.qpos - self.data.qpos
         # 阻抗控制律
-        damp = damp * 10 + 10
-        spring = spring * 100 + 100
         tau = self.data.qfrc_bias + \
               damp * (q_d_vel - self.data.qvel) + \
-            spring * (self.IKResult.qpos - self.data.qpos)
+            spring * (IKResult.qpos - self.data.qpos)
 
-        # print(tau)
-        self.data.ctrl = tau
-
+        # self.data.ctrl = tau
+        return tau, IKResult
 
     # 重置函数
     def reset(self, seed=None, options=None):
@@ -171,7 +181,11 @@ class ImpedanceFrankaGym(gym.Env):
         mj.mj_forward(self.model, self.data)
         self.data_copy = copy.copy(self.data)
 
-        # 初始参数
+        # 初始动作参数
+        self.spring = np.ones(7) * 100
+        self.damp = np.ones(7) * 10
+        self.weight = np.ones(7)
+
         self.N = 300
         self.i = 0
         # xy方向双纽线轨迹
@@ -191,9 +205,32 @@ class ImpedanceFrankaGym(gym.Env):
         if self.render_mode == "human":
             self._render_frame()
 
-        self.max_qpos = np.ones(7) * np.pi
-        self.min_qpos = - np.ones(7) * np.pi
-        self.saturation_time = np.zeros(7)
+        ## 初始化记录数据并执行一步
+        # 控制器计算
+        self.data_copy.qpos = self.data.qpos
+        self.data_copy.site_xpos = self.data.site_xpos
+        self.data_copy.site_xmat = self.data.site_xmat
+        tau, IKResult = self.impedance_controller(target_pos=self.target_pos[self.i], target_quat=self.target_quat,
+                                  regularization_strength=self.weight,
+                                  damp=self.damp,
+                                  spring=self.spring)
+        self.data.ctrl = tau
+
+        # 一步仿真
+        step_time = self.data.time
+        while (self.data.time - step_time < 1.0 / 60.0):
+            mj.mj_step(self.model, self.data)
+        if self.render_mode == "human":
+            self._render_frame()
+
+        self.record_torque_control = tau  # 控制力矩
+        self.record_qpos_control = IKResult.qpos  # 控制关节角
+        self.record_qpos_real = self.data.qpos  # 实际关节角
+        self.record_spring = self.spring  # spring值
+        self.record_damp = self.damp  # damp值
+        self.record_weight = self.weight  # 阻尼最小二乘权重
+        self.record_xpos = self.data.site_xpos[0][:3]  # 末端位置
+        self.record_xmat = self.data.site_xmat[0]  # 末端角度
 
         observation = self._get_obs()
         info = self._get_info()
@@ -201,93 +238,80 @@ class ImpedanceFrankaGym(gym.Env):
         return observation, info
 
     def step(self, action):
-        # 清空记录
-        self.record_ex_ctrl = None
-        self.record_qpos = None
-        self.record_site_xpos = None
-        self.record_site_quat = None
-        self.record_torque_control = None
-        self.record_torque_real = None
 
-        done = False
-        # self.saturation_time = None
+        self.i += 1
 
-        action = (action + 1) * 2
-        # 每一步循环一次轨迹循环 记住 重构代码
-        for i in range(self.N):
-            # 执行一步控制器 pos_controller
-            self.data_copy.qpos = self.data.qpos
-            self.data_copy.site_xpos = self.data.site_xpos
-            self.data_copy.site_xmat = self.data.site_xmat
+        # 将传进的归一化action修改 暂不考虑阻尼最小二乘矩阵的参数修改
+        # spring每一步可以改变（1） damp每一步可以改变（0.1）weight每一步可以改变（0.01）初始值为100 10 1
+        self.spring += action[:7]
+        self.damp += 0.1 * action[7:14]
+        self.weight += 0.01 * action[7:14]
+        # 取正操作
+        self.spring = np.max(np.array((self.spring, np.zeros(7))), axis=0)
+        self.damp = np.max(np.array((self.damp, np.zeros(7))), axis=0)
+        self.weight = np.max(np.array((self.weight, np.zeros(7))), axis=0)
+        # 控制器计算
+        self.data_copy.qpos = self.data.qpos
+        self.data_copy.site_xpos = self.data.site_xpos
+        self.data_copy.site_xmat = self.data.site_xmat
+        tau, IKResult = self.impedance_controller(target_pos=self.target_pos[self.i], target_quat=self.target_quat,
+                                  regularization_strength=self.weight,
+                                  damp=self.damp,
+                                  spring=self.spring)
+        self.data.ctrl = tau
 
-            self.impedance_controller(target_pos=self.target_pos[i], target_quat=self.target_quat,
-                                     regularization_strength=np.array([1., 1., 1., 1., 1., 1., 1.]),
-                                     damp=np.array([0, 0, 0, 0, 0, 0, 0]),
-                                     spring=np.array([0, 0, 0, 0, 0, 0, 0]))
+        # 一步仿真
+        step_time = self.data.time
+        while (self.data.time - step_time < 1.0 / 60.0):
+            mj.mj_step(self.model, self.data)
+        if self.render_mode == "human":
+            self._render_frame()
 
-            # 控制仿真帧率
-            # 注意模拟帧率和控制器帧率不同
-            step_time = self.data.time
-            #  执行仿真 mj_step
-            while (self.data.time - step_time < 1.0 / 60.0):
-                mj.mj_step(self.model, self.data)
+        # 设计观察量 存储好各类变量
+        self.record_torque_control = np.vstack((self.record_torque_control, tau))
+        self.record_qpos_control = np.vstack((self.record_qpos_control, IKResult.qpos))
+        self.record_qpos_real = np.vstack((self.record_qpos_real, self.data.qpos))
+        self.record_spring = np.vstack((self.record_spring, self.spring))
+        self.record_damp = np.vstack((self.record_damp, self.damp))
+        self.record_weight = np.vstack((self.record_weight, self.weight))
+        self.record_xpos = np.vstack((self.record_xpos, self.data.site_xpos[0][:3]))
+        self.record_xmat = np.vstack((self.record_xmat, self.data.site_xmat[0]))
 
-            # 执行一步render
-            if self.render_mode == "human":
-                self._render_frame()
+        ## 设计reward
+        # 这部分是末端跟踪误差
+        err_pos = self.target_pos[self.i] - self.data.site_xpos[0][:3]
+        site_xquat = np.empty(4, dtype=np.float64)
+        neg_site_xquat = np.empty(4, dtype=np.float64)
+        err_rot_quat = np.empty(4, dtype=np.float64)
+        err_rot = np.empty(3, dtype=np.float64)
+        mj.mju_mat2Quat(site_xquat, self.data.site_xmat[0])
+        mj.mju_negQuat(neg_site_xquat, site_xquat)
+        mj.mju_mulQuat(err_rot_quat, self.target_quat, neg_site_xquat)
+        mj.mju_quat2Vel(err_rot, err_rot_quat, 1)
+        err_x = np.linalg.norm(err_pos) + np.linalg.norm(err_rot) * 1.0
+        # 这部分是关节跟踪误差
+        err_qpos = IKResult.qpos - self.data.qpos
+        err_qpos = np.absolute(err_qpos)
+        err_qpos = np.sum(err_qpos)
 
-            # 观察一下关节控制力矩和关节实际力矩的情况
-            if i == 0:
-                self.record_torque_control = self.data.ctrl
-                self.record_torque_real = self.data.qfrc_actuator
-            else:
-                self.record_torque_control = np.vstack((self.record_torque_control, self.data.ctrl))
-                self.record_torque_real = np.vstack((self.record_torque_real, self.data.qfrc_actuator))
+        reward = err_x + err_qpos
+        # 绘制图像和存储等功能
+        if self.i == self.N - 1:
+            plt.ion()
+            plt.clf()
+            ax_tracking = plt.axes(projection='3d')
+            ax_tracking.scatter3D(self.record_xpos[:, 0], self.record_xpos[:, 1],
+                                  self.record_xpos[:, 2], cmap='b')
+            ax_tracking.plot3D(self.target_pos[:, 0], self.target_pos[:, 1], self.target_pos[:, 2], 'red')
+            ax_tracking.set_xlim((0.16, 0.96))
+            ax_tracking.set_ylim((-0.2, 0.2))
+            ax_tracking.set_zlim((0.4, 0.8))
 
-
-        # 绘制一下跟踪图像
-        plt.ion()
-        plt.clf()
-        len_range = 3
-        plt.plot(self.record_torque_control[:,len_range])
-        plt.plot(self.record_torque_real[:,len_range])
-        # plt.legend(['1','2','3','4','5','6','7',
-        #             '11','22','33','44','55','66','77'])
-        plt.legend(['1','11'])
-        plt.pause(0.1)
-        plt.ioff()
-
-
-        # 绘制一下跟踪图像
-        # plt.ion()
-        # plt.clf()
-        # ax_tracking = plt.axes(projection='3d')
-        # ax_tracking.scatter3D(self.record_site_xpos[:, 0], self.record_site_xpos[:, 1],
-        #                       self.record_site_xpos[:, 2], cmap='b')
-        # ax_tracking.plot3D(self.target_pos[:, 0], self.target_pos[:, 1], self.target_pos[:, 2], 'red')
-        # ax_tracking.set_xlim((0.16,0.96))
-        # ax_tracking.set_ylim((-0.2,0.2))
-        # ax_tracking.set_zlim((0.4,0.8))
-        # plt.pause(0.1)
-        # plt.ioff()
-
-        # # 计算位置误差
-        # err_pos = self.target_pos[self.i] - self.data.site_xpos[0][:3]
-        # self.err_norm = np.linalg.norm(err_pos)
-        # # 计算姿态误差
-        # site_xquat = np.empty(4, dtype=np.float64)
-        # neg_site_xquat = np.empty(4, dtype=np.float64)
-        # err_rot_quat = np.empty(4, dtype=np.float64)
-        # err_rot = np.empty(3, dtype=np.float64)
-        # mj.mju_mat2Quat(site_xquat, self.data.site_xmat[0])
-        # mj.mju_negQuat(neg_site_xquat, site_xquat)
-        # mj.mju_mulQuat(err_rot_quat, self.target_quat, neg_site_xquat)
-        # mj.mju_quat2Vel(err_rot, err_rot_quat, 1)
-        # self.err_norm += np.linalg.norm(err_rot) * self.rot_weight
-        #
-        # reward = -self.err_norm
-
-        reward = 1
+            plt.pause(0.1)
+            plt.ioff()
+            done = True
+        else:
+            done = False
 
         observation = self._get_obs()
         info = self._get_info()

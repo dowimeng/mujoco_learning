@@ -22,23 +22,18 @@ if __name__ == "__main__":
     # 检查环境
     # stable_baselines3.common.env_checker.check_env(custom_env)
 
-    # print(custom_env.observation_space.sample())
-    custom_env.reset()
-    #
-    while 1 :
-        custom_env.step(action=np.ones(7))
+    # custom_env.reset()
+    # while 1 :
+    #     custom_env.step(action=np.zeros(21))
     # for i in range(2):
     #     custom_env.step(action=np.ones(7))
 
-    # custom_env.step(action=np.ones(7))
-    # custom_env.step(action=np.ones(7))
+    model = PPO("MlpPolicy", custom_env, verbose=1)
+    model.learn(total_timesteps=100)
     #
-    # model = PPO("MlpPolicy", custom_env, verbose=1)
-    # model.learn(total_timesteps=100)
-    # #
-    # vec_env = model.get_env()
-    # obs = vec_env.reset()
-    # for i in range(5):
-    #     action, _state = model.predict(obs, deterministic=True)
-    #     obs, reward, done, info = vec_env.step(action)
-    #     vec_env.render("human")
+    vec_env = model.get_env()
+    obs = vec_env.reset()
+    for i in range(5):
+        action, _state = model.predict(obs, deterministic=True)
+        obs, reward, done, info = vec_env.step(action)
+        vec_env.render("human")

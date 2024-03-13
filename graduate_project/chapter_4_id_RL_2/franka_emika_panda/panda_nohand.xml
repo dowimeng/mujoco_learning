@@ -222,15 +222,6 @@
     <motor class="panda" name="actuator7" joint="joint7" ctrlrange="-100 100" forcerange="-12 12"/>
   </actuator>
 
-<!--  <sensor>-->
-<!--    <jointactuatorfrc name = "joint1_torque" joint = "joint1"/>-->
-<!--    <jointactuatorfrc name = "joint2_torque" joint = "joint2"/>-->
-<!--    <jointactuatorfrc name = "joint3_torque" joint = "joint3"/>-->
-<!--    <jointactuatorfrc name = "joint4_torque" joint = "joint4"/>-->
-<!--    <jointactuatorfrc name = "joint5_torque" joint = "joint5"/>-->
-<!--    <jointactuatorfrc name = "joint6_torque" joint = "joint6"/>-->
-<!--    <jointactuatorfrc name = "joint7_torque" joint = "joint7"/>-->
-<!--  </sensor>-->
 
   <keyframe>
     <key name="home" qpos="0 0 0 -1.57079 0 1.57079 -0.7853" ctrl="0 0 0 -1.57079 0 1.57079 -0.7853"/>
