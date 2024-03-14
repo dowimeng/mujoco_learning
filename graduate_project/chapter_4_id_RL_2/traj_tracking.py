@@ -8,32 +8,34 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 import impedance_franka_gym
-# import stable_baselines3
-from stable_baselines3 import A2C
+from stable_baselines3.common.monitor import Monitor
 from stable_baselines3 import PPO
-from stable_baselines3 import DDPG
 import stable_baselines3.common.env_checker
 import time
 # 定义位置控制器
 if __name__ == "__main__":
 
     custom_env = impedance_franka_gym.ImpedanceFrankaGym(render_mode="human")
-
+    custom_env = Monitor(custom_env, 'train')
     # 检查环境
     # stable_baselines3.common.env_checker.check_env(custom_env)
 
     # custom_env.reset()
-    # while 1 :
-    #     custom_env.step(action=np.zeros(21))
-    # for i in range(2):
-    #     custom_env.step(action=np.ones(7))
+    # while 1:
+    #     action = np.zeros(21)
+    #     _, _, done, _, _ = custom_env.step(action=action)
+    #     if done:
+    #         custom_env.reset()
 
     model = PPO("MlpPolicy", custom_env, verbose=1)
-    model.learn(total_timesteps=100)
+    model.learn(total_timesteps=100000)
     #
     vec_env = model.get_env()
     obs = vec_env.reset()
-    for i in range(5):
+    # while 1:
+    for i in range(1):
         action, _state = model.predict(obs, deterministic=True)
         obs, reward, done, info = vec_env.step(action)
         vec_env.render("human")
+        if done:
+            custom_env.reset()

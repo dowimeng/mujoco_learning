@@ -13,3 +13,5 @@ import time
 a = np.array([1,2,3])
 b = np.ones(3) * 2
 print(np.max(np.array((a,b)),axis=0))
+c = np.array((a,b))
+print(np.linalg.norm(c, axis=1))

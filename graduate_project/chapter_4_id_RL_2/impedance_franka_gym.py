@@ -9,6 +9,7 @@ import time
 import inverse_kinematics as ik
 import copy
 import matplotlib.pyplot as plt
+import pandas as pd
 
 
 class ImpedanceFrankaGym(gym.Env):
@@ -83,6 +84,8 @@ class ImpedanceFrankaGym(gym.Env):
         self.record_weight = None  # 阻尼最小二乘权重
         self.record_xpos = None  # 末端位置
         self.record_xmat = None  # 末端角度
+        self.record_reward = None # 记录reward
+        self.record_err_x = None
 
         self.spring = None
         self.damp = None
@@ -100,7 +103,6 @@ class ImpedanceFrankaGym(gym.Env):
         if self.i == 0 :
             return np.concatenate(
                 [
-                    # 预留一个受限问题
                     self.record_qpos_control,
                     self.record_qpos_real,
                     self.record_torque_control,
@@ -116,7 +118,6 @@ class ImpedanceFrankaGym(gym.Env):
         else:
             return np.concatenate(
                 [
-                    # 预留一个受限问题
                     self.record_qpos_control[-1, :],
                     self.record_qpos_real[-1, :],
                     self.record_torque_control[-1, :],
@@ -186,7 +187,7 @@ class ImpedanceFrankaGym(gym.Env):
         self.damp = np.ones(7) * 10
         self.weight = np.ones(7)
 
-        self.N = 300
+        self.N = 200
         self.i = 0
         # xy方向双纽线轨迹
         a = 0.2
@@ -231,6 +232,7 @@ class ImpedanceFrankaGym(gym.Env):
         self.record_weight = self.weight  # 阻尼最小二乘权重
         self.record_xpos = self.data.site_xpos[0][:3]  # 末端位置
         self.record_xmat = self.data.site_xmat[0]  # 末端角度
+        self.record_err_x = 0 #末端加权误差记录
 
         observation = self._get_obs()
         info = self._get_info()
@@ -241,15 +243,19 @@ class ImpedanceFrankaGym(gym.Env):
 
         self.i += 1
 
-        # 将传进的归一化action修改 暂不考虑阻尼最小二乘矩阵的参数修改
-        # spring每一步可以改变（1） damp每一步可以改变（0.1）weight每一步可以改变（0.01）初始值为100 10 1
-        self.spring += action[:7]
-        self.damp += 0.1 * action[7:14]
-        self.weight += 0.01 * action[7:14]
-        # 取正操作
-        self.spring = np.max(np.array((self.spring, np.zeros(7))), axis=0)
-        self.damp = np.max(np.array((self.damp, np.zeros(7))), axis=0)
-        self.weight = np.max(np.array((self.weight, np.zeros(7))), axis=0)
+        # # 将传进的归一化action修改 暂不考虑阻尼最小二乘矩阵的参数修改
+        # # spring每一步可以改变 10 damp每一步可以改变 1 weight每一步可以改变 0.1 初始值为100 10 1
+        # self.spring += 10 * action[:7]
+        # self.damp += 1 * action[7:14]
+        # self.weight += 0.1 * action[14:]
+        # # 取正操作
+        # self.spring = np.max(np.array((self.spring, np.zeros(7))), axis=0)
+        # self.damp = np.max(np.array((self.damp, np.zeros(7))), axis=0)
+        # self.weight = np.max(np.array((self.weight, np.zeros(7))), axis=0)
+
+        self.spring = np.ones(7) * 100 + 50 * action[:7]
+        self.damp = np.ones(7) * 10 + 5 * action[7:14]
+        self.weight = np.ones(7) + 0.5 * action[14:]
         # 控制器计算
         self.data_copy.qpos = self.data.qpos
         self.data_copy.site_xpos = self.data.site_xpos
@@ -277,7 +283,6 @@ class ImpedanceFrankaGym(gym.Env):
         self.record_xpos = np.vstack((self.record_xpos, self.data.site_xpos[0][:3]))
         self.record_xmat = np.vstack((self.record_xmat, self.data.site_xmat[0]))
 
-        ## 设计reward
         # 这部分是末端跟踪误差
         err_pos = self.target_pos[self.i] - self.data.site_xpos[0][:3]
         site_xquat = np.empty(4, dtype=np.float64)
@@ -289,12 +294,9 @@ class ImpedanceFrankaGym(gym.Env):
         mj.mju_mulQuat(err_rot_quat, self.target_quat, neg_site_xquat)
         mj.mju_quat2Vel(err_rot, err_rot_quat, 1)
         err_x = np.linalg.norm(err_pos) + np.linalg.norm(err_rot) * 1.0
-        # 这部分是关节跟踪误差
-        err_qpos = IKResult.qpos - self.data.qpos
-        err_qpos = np.absolute(err_qpos)
-        err_qpos = np.sum(err_qpos)
 
-        reward = err_x + err_qpos
+        self.record_err_x = np.vstack((self.record_err_x, err_x))
+
         # 绘制图像和存储等功能
         if self.i == self.N - 1:
             plt.ion()
@@ -307,10 +309,59 @@ class ImpedanceFrankaGym(gym.Env):
             ax_tracking.set_ylim((-0.2, 0.2))
             ax_tracking.set_zlim((0.4, 0.8))
 
-            plt.pause(0.1)
+            plt.pause(0.01)
             plt.ioff()
+
+            # 记录到excel中
+            writer = pd.ExcelWriter(r'record.xlsx')
+
+            df = pd.DataFrame(self.record_torque_control)
+            df.to_excel(writer, sheet_name='record_torque_control', index=False)
+
+            df = pd.DataFrame(self.record_qpos_control)
+            df.to_excel(writer, sheet_name='record_qpos_control', index=False)
+
+            df = pd.DataFrame(self.record_qpos_real)
+            df.to_excel(writer, sheet_name='record_qpos_real', index=False)
+
+            df = pd.DataFrame(self.record_spring)
+            df.to_excel(writer, sheet_name='record_spring', index=False)
+
+            df = pd.DataFrame(self.record_damp)
+            df.to_excel(writer, sheet_name='record_damp', index=False)
+
+            df = pd.DataFrame(self.record_weight)
+            df.to_excel(writer, sheet_name='record_weight', index=False)
+
+            df = pd.DataFrame(self.record_xpos)
+            df.to_excel(writer, sheet_name='record_xpos', index=False)
+
+            df = pd.DataFrame(self.record_xmat)
+            df.to_excel(writer, sheet_name='record_xmat', index=False)
+
+            writer.close()
+
+            # 这部分是每轮结束时的reward
+            err_qpos = IKResult.qpos - self.data.qpos
+            err_qpos = np.absolute(err_qpos)
+            err_qpos = np.sum(err_qpos)
+            reward = err_x  +  err_qpos + np.mean(np.absolute(action))
+            reward = - reward
+            print("err_x: ", np.mean(self.record_err_x))
+
+            if np.mean(self.record_err_x) < 0.075 :
+                reward += 1000 - (np.mean(self.record_err_x) - 0.075) * 100000
+            print("reward: ", reward)
             done = True
         else:
+            # 这部分是关节跟踪误差
+            err_qpos = IKResult.qpos - self.data.qpos
+            err_qpos = np.absolute(err_qpos)
+            err_qpos = np.sum(err_qpos)
+            # 不鼓励任意变化action
+            reward = err_x  +  err_qpos + np.mean(np.absolute(action))
+            reward = - reward
+
             done = False
 
         observation = self._get_obs()
