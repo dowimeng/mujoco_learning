@@ -253,7 +253,7 @@ class ImpedanceFrankaGym(gym.Env):
         # 这里修改第二个关节的weight相对值, 同时修改其他的值
         weight_other = ((7 - (action[0]+1) * 2) / 6) ** 0.5
         self.weight = np.ones(7) * weight_other
-        self.weight[1] = 7 - (action[0]+1) * 2
+        self.weight[1] = (action[0]+1) * 2
         # 这里修改spring和damp  前4个关节一种 后3个关节一种
         self.spring[:4] = 100 + 50 * action[1]
         self.spring[4:] = 100 + 50 * action[2]
@@ -348,28 +348,26 @@ class ImpedanceFrankaGym(gym.Env):
             # 这部分是每轮结束时的reward
             err_qpos = IKResult.qpos - self.data.qpos
             err_qpos = np.absolute(err_qpos)
-            err_qpos_max = np.max(err_qpos)
-            # if err_qpos_max > 0.2 :
-            #     reward = -100
-            # else:
-            #     reward = 0
-            reward = 0
-            print("err_x: ", np.mean(self.record_err_x))
-            reward += ( 0.0775 - np.mean(self.record_err_x) ) * 10000
+            err_qpos_i = err_qpos[1]
+            if err_qpos_i > 0.11 :
+                reward = - 1
+                print("yes!")
+            else:
+                reward = 0
+            print("record_err_x: ", np.mean(self.record_err_x))
+            reward += ( 0.07444 - np.mean(self.record_err_x) ) * 2000
             print("reward: ", reward)
             done = True
         else:
             # 这部分是关节跟踪误差
             err_qpos = IKResult.qpos - self.data.qpos
             err_qpos = np.absolute(err_qpos)
-            err_qpos_max = np.max(err_qpos)
-            # print("err_qpos_max", err_qpos_max)
-            # 对过度的碰撞进行惩罚 跟踪效果滞后回馈
-            # if err_qpos_max > 0.1 :
-            #     reward = - 100
-            #     done = True
-            # else :
-            reward = 0
+            err_qpos_i = err_qpos[1]
+            if err_qpos_i > 0.11 :
+                reward = - 1
+                print("yes!")
+            else :
+                reward = 0
             done = False
 
         observation = self._get_obs()
