@@ -155,7 +155,7 @@ class ImpedanceFrankaGym(gym.Env):
         mj.mj_forward(self.model, self.data)
         self.data_copy = copy.copy(self.data)
 
-        self.N = 600
+        self.N = 300
         self.i = 0
         self.err_norm = np.inf
         self.site_tracking_record = self.data.site_xpos[0][:3]

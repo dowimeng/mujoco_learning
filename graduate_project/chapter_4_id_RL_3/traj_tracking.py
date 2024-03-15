@@ -22,7 +22,7 @@ if __name__ == "__main__":
 
     # custom_env.reset()
     # while 1:
-    #     action = np.zeros(21)
+    #     action = np.zeros(5)
     #     _, reward, done, _, _ = custom_env.step(action=action)
     #     if done:
     #         custom_env.reset()

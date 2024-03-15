@@ -62,8 +62,8 @@ class ImpedanceFrankaGym(gym.Env):
         self.cam.lookat = np.array([0.11680416692690154, 0.0030176585738958166, 0.38820110102502614])
 
         # 观察空间和动作空间
-        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(56,), dtype=np.float64)
-        self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(21,), dtype=np.float32)
+        self.observation_space = spaces.Box(low=-np.inf, high=np.inf, shape=(40,), dtype=np.float64)
+        self.action_space = spaces.Box(low=-1.0, high=1.0, shape=(5,), dtype=np.float32)
 
 
         # 一些必要的全局变量
@@ -110,9 +110,14 @@ class ImpedanceFrankaGym(gym.Env):
                     self.data.site_xpos[0][:3],
                     self.target_quat,
                     site_quat,
-                    self.spring,
-                    self.damp,
-                    self.weight,
+                    # self.spring,
+                    # self.damp,
+                    # self.weight,
+                    self.spring[0:1],
+                    self.spring[5:6],
+                    self.damp[0:1],
+                    self.damp[5:6],
+                    self.weight[1:2],
                 ]
             )
         else:
@@ -125,9 +130,11 @@ class ImpedanceFrankaGym(gym.Env):
                     self.data.site_xpos[0][:3],
                     self.target_quat,
                     site_quat,
-                    self.spring,
-                    self.damp,
-                    self.weight,
+                    self.spring[0:1],
+                    self.spring[5:6],
+                    self.damp[0:1],
+                    self.damp[5:6],
+                    self.weight[1:2],
                 ]
             )
 
@@ -243,19 +250,16 @@ class ImpedanceFrankaGym(gym.Env):
 
         self.i += 1
 
-        # # 将传进的归一化action修改 暂不考虑阻尼最小二乘矩阵的参数修改
-        # # spring每一步可以改变 10 damp每一步可以改变 1 weight每一步可以改变 0.1 初始值为100 10 1
-        # self.spring += 10 * action[:7]
-        # self.damp += 1 * action[7:14]
-        # self.weight += 0.1 * action[14:]
-        # # 取正操作
-        # self.spring = np.max(np.array((self.spring, np.zeros(7))), axis=0)
-        # self.damp = np.max(np.array((self.damp, np.zeros(7))), axis=0)
-        # self.weight = np.max(np.array((self.weight, np.zeros(7))), axis=0)
+        # 这里修改第二个关节的weight相对值, 同时修改其他的值
+        weight_other = ((7 - (action[0]+1) * 2) / 6) ** 0.5
+        self.weight = np.ones(7) * weight_other
+        self.weight[1] = 7 - (action[0]+1) * 2
+        # 这里修改spring和damp  前4个关节一种 后3个关节一种
+        self.spring[:4] = 100 + 50 * action[1]
+        self.spring[4:] = 100 + 50 * action[2]
+        self.damp[:4] = 10 + 5 * action[3]
+        self.damp[4:] = 10 + 5 * action[4]
 
-        self.spring = np.ones(7) * 100 + 50 * action[:7]
-        self.damp = np.ones(7) * 10 + 5 * action[7:14]
-        self.weight = np.ones(7) + 0.5 * action[14:]
         # 控制器计算
         self.data_copy.qpos = self.data.qpos
         self.data_copy.site_xpos = self.data.site_xpos
@@ -345,12 +349,13 @@ class ImpedanceFrankaGym(gym.Env):
             err_qpos = IKResult.qpos - self.data.qpos
             err_qpos = np.absolute(err_qpos)
             err_qpos_max = np.max(err_qpos)
-            if err_qpos_max > 0.2 :
-                reward = -100
-            else:
-                reward = 0
+            # if err_qpos_max > 0.2 :
+            #     reward = -100
+            # else:
+            #     reward = 0
+            reward = 0
             print("err_x: ", np.mean(self.record_err_x))
-            reward += ( 0.0754 - np.mean(self.record_err_x) ) * 10000
+            reward += ( 0.0775 - np.mean(self.record_err_x) ) * 10000
             print("reward: ", reward)
             done = True
         else:
@@ -358,13 +363,14 @@ class ImpedanceFrankaGym(gym.Env):
             err_qpos = IKResult.qpos - self.data.qpos
             err_qpos = np.absolute(err_qpos)
             err_qpos_max = np.max(err_qpos)
+            # print("err_qpos_max", err_qpos_max)
             # 对过度的碰撞进行惩罚 跟踪效果滞后回馈
-            if err_qpos_max > 0.2 :
-                reward = -100
-                done = True
-            else:
-                reward = 0
-                done = False
+            # if err_qpos_max > 0.1 :
+            #     reward = - 100
+            #     done = True
+            # else :
+            reward = 0
+            done = False
 
         observation = self._get_obs()
         info = self._get_info()
