@@ -4,11 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="基本完成了第三点的实验环境搭配，剩下的就是障碍物的设置和数据的存储，然后放到matlab中去绘制">
+    <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="这就是第三点的最终一版的实验代码和记录">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/impedance_franka_gym.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/impedance_franka_gym.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/record.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/record.xlsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/train.monitor.csv" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/train.monitor.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/franka_emika_panda/scene.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/franka_emika_panda/scene.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -344,7 +342,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710506978704</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="这就是第三点的最终一版的实验代码和记录">
+      <option name="closed" value="true" />
+      <created>1710517228875</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1710517228875</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -366,6 +372,7 @@
     <MESSAGE value="基本完成了强化学习调整逆运动学中选择阻尼最小二乘法的参数调整" />
     <MESSAGE value="开始搭建第三章内容" />
     <MESSAGE value="基本完成了第三点的实验环境搭配，剩下的就是障碍物的设置和数据的存储，然后放到matlab中去绘制" />
-    <option name="LAST_COMMIT_MESSAGE" value="基本完成了第三点的实验环境搭配，剩下的就是障碍物的设置和数据的存储，然后放到matlab中去绘制" />
+    <MESSAGE value="这就是第三点的最终一版的实验代码和记录" />
+    <option name="LAST_COMMIT_MESSAGE" value="这就是第三点的最终一版的实验代码和记录" />
   </component>
 </project>
