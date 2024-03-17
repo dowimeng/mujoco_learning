@@ -209,6 +209,7 @@ class ImpedanceFrankaGym(gym.Env):
         self.target_pos = self.target_traj[0]
         self.target_quat = np.empty(4, dtype=np.float64)
         mj.mju_mat2Quat(self.target_quat, self.data.site_xmat[0])
+        print(self.data.site_xmat[0])
 
         if self.render_mode == "human":
             self._render_frame()
@@ -342,6 +343,9 @@ class ImpedanceFrankaGym(gym.Env):
 
             df = pd.DataFrame(self.record_xmat)
             df.to_excel(writer, sheet_name='record_xmat', index=False)
+
+            df = pd.DataFrame(self.record_err_x)
+            df.to_excel(writer, sheet_name='record_err_x', index=False)
 
             writer.close()
 
