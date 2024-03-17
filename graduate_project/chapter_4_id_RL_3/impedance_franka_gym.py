@@ -355,7 +355,7 @@ class ImpedanceFrankaGym(gym.Env):
             else:
                 reward = 0
             print("record_err_x: ", np.mean(self.record_err_x))
-            reward += ( 0.07444 - np.mean(self.record_err_x) ) * 2000
+            reward += ( 0.07444 - np.mean(self.record_err_x) ) * 5000
             print("reward: ", reward)
             done = True
         else:

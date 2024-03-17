@@ -6,7 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="5fdb46d5-962a-449d-9138-4322b9d672a6" name="Changes" comment="这就是第三点的最终一版的实验代码和记录">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/franka_emika_panda/scene.xml" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/franka_emika_panda/scene.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/impedance_franka_gym.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/impedance_franka_gym.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/record.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/record.xlsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/train.monitor.csv" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/train.monitor.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/traj_tracking.py" beforeDir="false" afterPath="$PROJECT_DIR$/graduate_project/chapter_4_id_RL_3/traj_tracking.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -350,7 +353,15 @@
       <option name="project" value="LOCAL" />
       <updated>1710517228875</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="这就是第三点的最终一版的实验代码和记录">
+      <option name="closed" value="true" />
+      <created>1710657583031</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1710657583031</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
