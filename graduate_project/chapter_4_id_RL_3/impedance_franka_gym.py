@@ -209,7 +209,6 @@ class ImpedanceFrankaGym(gym.Env):
         self.target_pos = self.target_traj[0]
         self.target_quat = np.empty(4, dtype=np.float64)
         mj.mju_mat2Quat(self.target_quat, self.data.site_xmat[0])
-        print(self.data.site_xmat[0])
 
         if self.render_mode == "human":
             self._render_frame()
@@ -256,10 +255,10 @@ class ImpedanceFrankaGym(gym.Env):
         self.weight = np.ones(7) * weight_other
         self.weight[1] = (action[0]+1) * 2
         # 这里修改spring和damp  前4个关节一种 后3个关节一种
-        self.spring[:4] = 100 + 50 * action[1]
-        self.spring[4:] = 100 + 50 * action[2]
-        self.damp[:4] = 10 + 5 * action[3]
-        self.damp[4:] = 10 + 5 * action[4]
+        self.spring[:4] = 100 + 100 * action[1]
+        self.spring[4:] = 100 + 100 * action[2]
+        self.damp[:4] = 10 + 10 * action[3]
+        self.damp[4:] = 10 + 10 * action[4]
 
         # 控制器计算
         self.data_copy.qpos = self.data.qpos

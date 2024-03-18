@@ -22,13 +22,13 @@ if __name__ == "__main__":
 
     # custom_env.reset()
     # while 1:
-    #     action = np.zeros(21)
+    #     action = np.zeros(5)
     #     _, reward, done, _, _ = custom_env.step(action=action)
     #     if done:
     #         custom_env.reset()
 
-    model = PPO("MlpPolicy", custom_env, verbose=1)
-    model.learn(total_timesteps=100000)
+    model = PPO("MlpPolicy", env=custom_env, verbose=1)
+    model.learn(total_timesteps=1000000)
     #
     vec_env = model.get_env()
     obs = vec_env.reset()
