@@ -28,14 +28,14 @@ if __name__ == "__main__":
     df_record_data.to_csv('realtime_data.csv', mode='w', index= False, header=False)
 
     # 不改变对角矩阵模的大小，只改变单一关节的权重对关节总角度变化的影响
-    for i in np.linspace(start=0.1, stop=5.0, num=19):
+    for i in [0.1, 1, 4]:
         custom_env.reset()
         df_record_data = pd.DataFrame(np.zeros(shape=(1,13)))
         df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)
         loop_time = time.time()
-        while (time.time() - loop_time < 2.0):
-            input_action = np.ones(7) * ((7 - i)/6.0)
-            input_action[4] = i
+        while (time.time() - loop_time < 1):
+            input_action = np.ones(7)
+            input_action[2] = i
             _, _, _, _, record_data = custom_env.step(action=input_action)
             df_record_data = pd.DataFrame([record_data])
             df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)

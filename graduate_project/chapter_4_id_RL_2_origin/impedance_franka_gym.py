@@ -234,6 +234,7 @@ class ImpedanceFrankaGym(gym.Env):
         self.record_torque_control = tau  # 控制力矩
         self.record_qpos_control = IKResult.qpos  # 控制关节角
         self.record_qpos_real = self.data.qpos  # 实际关节角
+        self.record_qvel = self.data.qvel  # 控制力矩
         self.record_spring = self.spring  # spring值
         self.record_damp = self.damp  # damp值
         self.record_weight = self.weight  # 阻尼最小二乘权重
@@ -281,6 +282,7 @@ class ImpedanceFrankaGym(gym.Env):
         self.record_torque_control = np.vstack((self.record_torque_control, tau))
         self.record_qpos_control = np.vstack((self.record_qpos_control, IKResult.qpos))
         self.record_qpos_real = np.vstack((self.record_qpos_real, self.data.qpos))
+        self.record_qvel = np.vstack((self.record_qvel, self.data.qvel))
         self.record_spring = np.vstack((self.record_spring, self.spring))
         self.record_damp = np.vstack((self.record_damp, self.damp))
         self.record_weight = np.vstack((self.record_weight, self.weight))
@@ -345,6 +347,9 @@ class ImpedanceFrankaGym(gym.Env):
 
             df = pd.DataFrame(self.record_err_x)
             df.to_excel(writer, sheet_name='record_err_x', index=False)
+
+            df = pd.DataFrame(self.record_qvel)
+            df.to_excel(writer, sheet_name='record_qvel', index=False)
 
             writer.close()
 

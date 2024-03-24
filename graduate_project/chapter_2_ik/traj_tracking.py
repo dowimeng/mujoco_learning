@@ -27,13 +27,30 @@ if __name__ == "__main__":
     df_record_data = pd.DataFrame()
     df_record_data.to_csv('realtime_data.csv', mode='w', index= False, header=False)
 
-    # 不同倍数的对角矩阵对关节总角度变化的影响
-    for i in np.linspace(start=-1.0, stop=1.0, num=20):
-        custom_env.reset()
-        df_record_data = pd.DataFrame(np.zeros(shape=(1,13)))
+    loop_time = time.time()
+    while (time.time() - loop_time < 1.0):
+        _, _, _, _, record_data = custom_env.step(action=np.array([1, 1, 1, 1, 1, 1, 1]))
+        df_record_data = pd.DataFrame([record_data])
         df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)
-        loop_time = time.time()
-        while (time.time() - loop_time < 2.0):
-            _, _, _, _, record_data = custom_env.step(action=np.array([1, 1, 1, 1, 1, 1, 1]) * 10 ** i)
-            df_record_data = pd.DataFrame([record_data])
-            df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)
+
+
+    # for i in np.linspace(start=-1.0, stop=1.0, num=20):
+    #     custom_env.reset()
+    #     df_record_data = pd.DataFrame(np.zeros(shape=(1, 13)))
+    #     df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)
+    #     loop_time = time.time()
+    #     while (time.time() - loop_time < 2.0):
+    #         _, _, _, _, record_data = custom_env.step(action=np.array([1, 1, 1, 1, 1, 1, 1]) * 10 ** i)
+    #         df_record_data = pd.DataFrame([record_data])
+    #         df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)
+
+    # 不同倍数的对角矩阵对关节总角度变化的影响
+    # for i in np.linspace(start=-1.0, stop=1.0, num=20):
+    #     custom_env.reset()
+    #     df_record_data = pd.DataFrame(np.zeros(shape=(1,13)))
+    #     df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)
+    #     loop_time = time.time()
+    #     while (time.time() - loop_time < 2.0):
+    #         _, _, _, _, record_data = custom_env.step(action=np.array([1, 1, 1, 1, 1, 1, 1]) * 10 ** i)
+    #         df_record_data = pd.DataFrame([record_data])
+    #         df_record_data.to_csv('realtime_data.csv', mode='a', index=False, header=False)
